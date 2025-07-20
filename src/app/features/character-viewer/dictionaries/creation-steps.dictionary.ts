@@ -1,4 +1,4 @@
-export const enum CreationSteps {
+export enum CreationSteps {
     ClassSelection = 'class-selection',
     RaceSelection = 'race-selection',
     OriginSelection = 'origin-selection',

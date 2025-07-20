@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { StepperModule } from 'primeng/stepper';
+import { CreationSteps } from '../../dictionaries/creation-steps.dictionary';
 
 @Component({
   selector: 'app-character-viewer',
@@ -8,4 +9,6 @@ import { StepperModule } from 'primeng/stepper';
   styleUrl: './character-viewer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CharacterViewerComponent { }
+export class CharacterViewerComponent {
+  CreationSteps = CreationSteps;
+}
