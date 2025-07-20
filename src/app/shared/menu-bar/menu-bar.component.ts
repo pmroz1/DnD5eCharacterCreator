@@ -7,20 +7,20 @@ import { MenubarModule } from 'primeng/menubar';
   standalone: true,
   imports: [MenubarModule],
   template: `<p-menubar [model]="items"></p-menubar>`,
-  styleUrl: './MenuBar.component.scss',
+  styleUrl: './menu-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuBarComponent {
   items: MenuItem[] = [
     {
-      label: 'Create New Character',
+      label: 'New Character',
       icon: 'pi pi-plus',
-      routerLink: '/create-character',
+      routerLink: '/character-creator',
     },
     {
       label: 'View Characters',
       icon: 'pi pi-list',
-      routerLink: '/character-list',
+      routerLink: '/character-viewer',
     },
   ];
 
