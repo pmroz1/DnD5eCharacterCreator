@@ -20,6 +20,7 @@ export class MenuBarComponent {
     {
       label: 'View Characters',
       icon: 'pi pi-list',
+      badge: '0',
       routerLink: '/character-viewer',
     },
   ];
