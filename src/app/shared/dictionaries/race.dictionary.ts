@@ -1,5 +1,5 @@
 // https://www.dndbeyond.com/species
- export const enum RACE_DICTIONARY {
+ export const enum RaceDictionary {
     Aasimar = 'Aasimar',
     Dragonborn = 'Dragonborn',
     Dwarf = 'Dwarf',
