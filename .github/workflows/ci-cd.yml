@@ -39,9 +39,12 @@ jobs:
               with:
                 name: build-artifact
                 path: dist/
-            - name: Deploy to GitHub Pages
-              uses: peaceiris/actions-gh-pages@v4
-              if: github.ref == 'refs/heads/master'
+            - name: Setup Pages
+              uses: actions/configure-pages@v3
+            - name: Upload to GitHub Pages
+              uses: actions/upload-pages-artifact@v2
               with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                publish_dir: ./dist/dn-d5e-character-creator
+                path: ./dist/dn-d5e-character-creator
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v2
