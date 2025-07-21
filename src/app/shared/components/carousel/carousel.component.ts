@@ -6,17 +6,19 @@ import { CarouselModule } from 'primeng/carousel';
     standalone: true,
     imports: [CarouselModule],
     template: `
+        @if(items().length>0){
         <p-carousel
             [value]="items()"
             [numVisible]="numVisible()"
             [responsiveOptions]="responsiveOptions()"
         >
             <ng-template let-item #item>
-                <div class="border border-surface rounded-border m-2 p-4">
-
-                </div>
+                <div class="border border-surface rounded-border m-2 p-4"></div>
             </ng-template>
         </p-carousel>
+        } @else{
+        <div class="text-center text-gray-500 dark:text-gray-400">No items available</div>
+        }
     `,
     styles: ``,
     changeDetection: ChangeDetectionStrategy.OnPush,
