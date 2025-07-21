@@ -1,5 +1,5 @@
 // https://www.dndbeyond.com/classes
-export const enum ClassDictionary {
+export enum ClassDictionary {
 //   Artificer = 'artificer', not 5e edition (?)
   BARBARIAN = 'barbarian',
   BARD = 'bard',
