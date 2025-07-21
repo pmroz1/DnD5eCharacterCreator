@@ -1,5 +1,10 @@
-<p-card header="Simple Card">
+<p-card [header]="CreationStepsTitles[CreationSteps.ClassSelection]" class="mb-4">
     <p class="m-0">
-        Lorem ipsum dolor sit amet...
+        {{CreationStepsDescriptions[CreationSteps.ClassSelection]}}
+        <br />
+        {{LinkPreNote}}
+        <br />
+        <a [href]="TipsLookup.Classes" target="_blank" rel="noopener noreferrer">
+            {{TipsLookup.Classes}}</a>
     </p>
 </p-card>
