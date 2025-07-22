@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, OnInit, ViewEncapsulation } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { ImageCardComponent } from "../image-card/image-card.component";
 import { FiveEClass } from '../../../features/character-creator/models/five-e-class.model';
@@ -15,6 +15,7 @@ import { ImageCardData } from '../image-card/models/image-card.model';
             [numVisible]="numVisible()"
             [responsiveOptions]="responsiveOptions()"
             [numScroll]="3"
+            [circular]="true"
             class="mt-5 mb-5"
         >
             <ng-template let-item #item class="p-carousel-item m-20">
@@ -28,6 +29,7 @@ import { ImageCardData } from '../image-card/models/image-card.model';
     `,
     styles: ``,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
 })
 export class CarouselComponent {
     readonly items = input<ImageCardData[]>([]);
