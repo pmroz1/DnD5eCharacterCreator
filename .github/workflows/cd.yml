@@ -32,8 +32,6 @@ jobs:
               run: npm install
             - name: Build Application
               run: npm run build -- --configuration=production --base-href=/DnD5eCharacterCreator/
-            - name: Add 404.html for SPA routing
-              run: cp ./dist/dn-d5e-character-creator/index.html ./dist/dn-d5e-character-creator/404.html
             - name: Setup Pages
               uses: actions/configure-pages@v5
             - name: Upload to GitHub Pages

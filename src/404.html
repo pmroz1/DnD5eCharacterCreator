@@ -3,17 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>DnD5eCharacterCreator</title>
-  <base href="/">
+  <base href="/DnD5eCharacterCreator/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script>
-    (function() {
-      var redirect = sessionStorage.redirect;
-      delete sessionStorage.redirect;
-      if (redirect && redirect !== location.pathname) {
-        history.replaceState(null, null, redirect);
-      }
-    })();
+    sessionStorage.redirect = location.pathname + location.search + location.hash;
+    location.replace('/DnD5eCharacterCreator/');
   </script>
 </head>
 <body>
