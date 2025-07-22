@@ -1,6 +1,6 @@
 # DnD5eCharacterCreator
 
-![Build Status](https://github.com/pmroz1/DnD5eCharacterCreator/actions/workflows/ci-cd.yml/badge.svg)
+![Build Status](https://github.com/pmroz1/DnD5eCharacterCreator/actions/workflows/ci.yml/badge.svg)
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
 
