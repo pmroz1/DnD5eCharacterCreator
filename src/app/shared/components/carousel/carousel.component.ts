@@ -14,8 +14,10 @@ import { ImageCardData } from '../image-card/models/image-card.model';
             [value]="items()"
             [numVisible]="numVisible()"
             [responsiveOptions]="responsiveOptions()"
+            [numScroll]="3"
+            class="mt-5 mb-5"
         >
-            <ng-template let-item #item>
+            <ng-template let-item #item class="p-carousel-item m-20">
                 <!-- <div class="border border-surface rounded-border m-2 p-4"></div> -->
                  <app-image-card [cardData]="item"></app-image-card>
             </ng-template>
@@ -32,8 +34,20 @@ export class CarouselComponent {
     readonly itemTemplate = input<string>('');
     readonly carouselClass = input<string>('');
     readonly itemClass = input<string>('');
-    readonly numVisible = input<number>(3);
+    readonly numVisible = input<number>(9);
     readonly responsiveOptions = input<any[]>([
+        {
+            breakpoint: '1920px',
+            numVisible: 6,
+        },
+        {
+            breakpoint: '1600px',
+            numVisible: 5,
+        },
+        {
+            breakpoint: '1200px',
+            numVisible: 4,
+        },
         {
             breakpoint: '1024px',
             numVisible: 3,
