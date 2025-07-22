@@ -16,7 +16,7 @@ export const ALL_CLASSES : FiveEClass[] = [
     features: [],
     subclasses: [],
     startingEquipment: { guaranteed: [], choices: [] },
-    imageUrl: undefined,
+    imageUrl: '/assets/images/classes/barbarian.jpg',
     description: 'Strong and fierce warriors, Barbarians are known for their rage and combat prowess. They excel in melee combat and can withstand significant damage.'
   },
   {
@@ -32,7 +32,7 @@ export const ALL_CLASSES : FiveEClass[] = [
     features: [],
     subclasses: [],
     startingEquipment: { guaranteed: [], choices: [] },
-    imageUrl: undefined,
+    imageUrl: '/assets/images/classes/bard.jpg',
     description: 'Bards are versatile spellcasters and skilled performers, using their charisma and creativity to inspire allies and manipulate foes. They excel in social situations and can fill multiple roles in a party.'
   },
   {
@@ -48,7 +48,7 @@ export const ALL_CLASSES : FiveEClass[] = [
     features: [],
     subclasses: [],
     startingEquipment: { guaranteed: [], choices: [] },
-    imageUrl: undefined,
+    imageUrl: '/assets/images/classes/cleric.jpg',
     description: 'Clerics are divine spellcasters who draw power from their deities. They can heal, protect, and smite foes, making them invaluable in any adventuring party. Their versatility allows them to adapt to various roles.'
   },
   {
@@ -64,7 +64,7 @@ export const ALL_CLASSES : FiveEClass[] = [
     features: [],
     subclasses: [],
     startingEquipment: { guaranteed: [], choices: [] },
-    imageUrl: undefined,
+    imageUrl: '/assets/images/classes/druid.jpg',
     description: 'Druids are spellcasters who harness the power of nature. They can shapeshift into animals, summon elemental forces, and heal allies. Their connection to the natural world makes them versatile and adaptable.'
   },
   {
@@ -80,7 +80,7 @@ export const ALL_CLASSES : FiveEClass[] = [
     features: [],
     subclasses: [],
     startingEquipment: { guaranteed: [], choices: [] },
-    imageUrl: undefined,
+    imageUrl: '/assets/images/classes/fighter.jpg',
     description: 'Fighters are skilled combatants who excel in physical combat. They can specialize in various weapons and fighting styles, making them adaptable to different combat scenarios. Their training allows them to be effective in both offense and defense.'
   },
   {
@@ -96,7 +96,7 @@ export const ALL_CLASSES : FiveEClass[] = [
     features: [],
     subclasses: [],
     startingEquipment: { guaranteed: [], choices: [] },
-    imageUrl: undefined,
+    imageUrl: '/assets/images/classes/monk.jpg',
     description: 'Monks are martial artists who harness their inner energy, or ki, to perform extraordinary feats. They excel in unarmed combat and can use their agility and speed to outmaneuver opponents.'
   },
   {
@@ -112,7 +112,7 @@ export const ALL_CLASSES : FiveEClass[] = [
     features: [],
     subclasses: [],
     startingEquipment: { guaranteed: [], choices: [] },
-    imageUrl: undefined,
+    imageUrl: '/assets/images/classes/paladin.jpg',
     description: 'Paladins are holy warriors who swear an oath to uphold justice and righteousness. They can heal, protect, and smite foes, making them formidable allies in battle.'
   },
   {
@@ -128,7 +128,7 @@ export const ALL_CLASSES : FiveEClass[] = [
     features: [],
     subclasses: [],
     startingEquipment: { guaranteed: [], choices: [] },
-    imageUrl: undefined,
+    imageUrl: '/assets/images/classes/ranger.jpg',
     description: 'Rangers are skilled hunters and trackers, adept at surviving in the wilderness. They can cast spells, summon animal companions, and excel in ranged combat. Their versatility makes them valuable in various situations.'
   },
   {
@@ -144,7 +144,7 @@ export const ALL_CLASSES : FiveEClass[] = [
     features: [],
     subclasses: [],
     startingEquipment: { guaranteed: [], choices: [] },
-    imageUrl: undefined,
+    imageUrl: '/assets/images/classes/rogue.jpg',
     description: 'Rogues are cunning and agile characters who excel at stealth, deception, and precision strikes. They can disarm traps, pick locks, and deal devastating damage with sneak attacks.'
   },
   {
@@ -160,7 +160,7 @@ export const ALL_CLASSES : FiveEClass[] = [
     features: [],
     subclasses: [],
     startingEquipment: { guaranteed: [], choices: [] },
-    imageUrl: undefined,
+    imageUrl: '/assets/images/classes/sorcerer.jpg',
     description: 'Sorcerers are innate spellcasters who draw on their magical heritage to cast spells. They have a limited selection of spells but can cast them more flexibly than other spellcasters.'
   },
   {
@@ -176,7 +176,7 @@ export const ALL_CLASSES : FiveEClass[] = [
     features: [],
     subclasses: [],
     startingEquipment: { guaranteed: [], choices: [] },
-    imageUrl: undefined,
+    imageUrl: '/assets/images/classes/warlock.jpg',
     description: 'Warlocks are spellcasters who derive their power from pacts with otherworldly beings. They can cast spells, summon eldritch forces, and manipulate the minds of others. Their unique abilities make them unpredictable and versatile in various situations.'
   },
   {
@@ -192,7 +192,7 @@ export const ALL_CLASSES : FiveEClass[] = [
     features: [],
     subclasses: [],
     startingEquipment: { guaranteed: [], choices: [] },
-    imageUrl: undefined,
+    imageUrl: '/assets/images/classes/wizard.jpg',
     description: 'Wizards are scholarly magic-users who rely on their intelligence and extensive study of arcane lore to cast spells. They have a vast repertoire of spells at their disposal, making them versatile and powerful spellcasters.'
   }
 ];
