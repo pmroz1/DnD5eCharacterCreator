@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ImageCardData } from './models/image-card.model';
 
 @Component({
     selector: 'app-image-card',
@@ -7,12 +8,12 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
         <div class="image-card border border-surface-200 dark:border-surface-700 rounded m-2 p-4">
             <div class="mb-4">
                 <div>
-                    <img [src]="imageUrl" [alt]="title" class="w-full h-auto rounded" />
+                    <img [src]="cardData.imageUrl" [alt]="cardData.title" class="w-full h-auto rounded" />
                 </div>
             </div>
             <div>
-                <h3 class="text-lg font-semibold">{{ title }}</h3>
-                <p class="text-sm text-surface-600 dark:text-surface-400">{{ description }}</p>
+                <h3 class="text-lg font-semibold">{{ cardData.title }}</h3>
+                <p class="text-sm text-surface-600 dark:text-surface-400">{{ cardData.description }}</p>
             </div>
         </div>
     `,
@@ -20,7 +21,10 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageCardComponent {
-    @Input() imageUrl: string = '';
-    @Input() title: string = '';
-    @Input() description: string = '';
+    @Input() cardData: ImageCardData = {
+        imageUrl: 'default-image-url.jpg',
+        title: '',
+        description: '',
+        link: '',
+    };
 }

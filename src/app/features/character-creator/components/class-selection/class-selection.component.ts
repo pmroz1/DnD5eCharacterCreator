@@ -3,6 +3,7 @@ import { CardModule } from 'primeng/card';
 import { CreationStepsTitles, CreationStepsDescriptions, CreationSteps, LinkPreNote } from '../../dictionaries/creation-steps.dictionary';
 import { TipsLookup } from '../../../../shared/dictionaries/tips-lookup.dictionary';
 import { CarouselComponent } from "../../../../shared/components/carousel/carousel.component";
+import { ALL_CLASSES } from '../../../data/classes.data';
 
 @Component({
   selector: 'app-class-selection',
@@ -17,4 +18,11 @@ export class ClassSelectionComponent {
   CreationStepsDescriptions = CreationStepsDescriptions;
   LinkPreNote = LinkPreNote;
   TipsLookup = TipsLookup;
+
+  carouselItems = ALL_CLASSES.map((fiveEClass) => ({
+    imageUrl: fiveEClass.imageUrl,
+    title: fiveEClass.name,
+    description: fiveEClass.description,
+    link: `/character-creator/${CreationSteps.ClassSelection}/${fiveEClass.id}`,
+  }));
 }

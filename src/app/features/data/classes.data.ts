@@ -15,7 +15,9 @@ export const ALL_CLASSES : FiveEClass[] = [
     skillChoices: [],
     features: [],
     subclasses: [],
-    startingEquipment: { guaranteed: [], choices: [] }
+    startingEquipment: { guaranteed: [], choices: [] },
+    imageUrl: undefined,
+    description: undefined
   },
   {
     id: 'bard',
@@ -29,7 +31,9 @@ export const ALL_CLASSES : FiveEClass[] = [
     skillChoices: [],
     features: [],
     subclasses: [],
-    startingEquipment: { guaranteed: [], choices: [] }
+    startingEquipment: { guaranteed: [], choices: [] },
+    imageUrl: undefined,
+    description: undefined
   },
   {
     id: 'cleric',
@@ -43,7 +47,9 @@ export const ALL_CLASSES : FiveEClass[] = [
     skillChoices: [],
     features: [],
     subclasses: [],
-    startingEquipment: { guaranteed: [], choices: [] }
+    startingEquipment: { guaranteed: [], choices: [] },
+    imageUrl: undefined,
+    description: undefined
   },
   {
     id: 'druid',
@@ -57,7 +63,9 @@ export const ALL_CLASSES : FiveEClass[] = [
     skillChoices: [],
     features: [],
     subclasses: [],
-    startingEquipment: { guaranteed: [], choices: [] }
+    startingEquipment: { guaranteed: [], choices: [] },
+    imageUrl: undefined,
+    description: undefined
   },
   {
     id: 'fighter',
@@ -71,7 +79,9 @@ export const ALL_CLASSES : FiveEClass[] = [
     skillChoices: [],
     features: [],
     subclasses: [],
-    startingEquipment: { guaranteed: [], choices: [] }
+    startingEquipment: { guaranteed: [], choices: [] },
+    imageUrl: undefined,
+    description: undefined
   },
   {
     id: 'monk',
@@ -85,7 +95,9 @@ export const ALL_CLASSES : FiveEClass[] = [
     skillChoices: [],
     features: [],
     subclasses: [],
-    startingEquipment: { guaranteed: [], choices: [] }
+    startingEquipment: { guaranteed: [], choices: [] },
+    imageUrl: undefined,
+    description: undefined
   },
   {
     id: 'paladin',
@@ -99,7 +111,9 @@ export const ALL_CLASSES : FiveEClass[] = [
     skillChoices: [],
     features: [],
     subclasses: [],
-    startingEquipment: { guaranteed: [], choices: [] }
+    startingEquipment: { guaranteed: [], choices: [] },
+    imageUrl: undefined,
+    description: undefined
   },
   {
     id: 'ranger',
@@ -113,7 +127,9 @@ export const ALL_CLASSES : FiveEClass[] = [
     skillChoices: [],
     features: [],
     subclasses: [],
-    startingEquipment: { guaranteed: [], choices: [] }
+    startingEquipment: { guaranteed: [], choices: [] },
+    imageUrl: undefined,
+    description: undefined
   },
   {
     id: 'rogue',
@@ -127,7 +143,9 @@ export const ALL_CLASSES : FiveEClass[] = [
     skillChoices: [],
     features: [],
     subclasses: [],
-    startingEquipment: { guaranteed: [], choices: [] }
+    startingEquipment: { guaranteed: [], choices: [] },
+    imageUrl: undefined,
+    description: undefined
   },
   {
     id: 'sorcerer',
@@ -141,7 +159,9 @@ export const ALL_CLASSES : FiveEClass[] = [
     skillChoices: [],
     features: [],
     subclasses: [],
-    startingEquipment: { guaranteed: [], choices: [] }
+    startingEquipment: { guaranteed: [], choices: [] },
+    imageUrl: undefined,
+    description: undefined
   },
   {
     id: 'warlock',
@@ -155,7 +175,9 @@ export const ALL_CLASSES : FiveEClass[] = [
     skillChoices: [],
     features: [],
     subclasses: [],
-    startingEquipment: { guaranteed: [], choices: [] }
+    startingEquipment: { guaranteed: [], choices: [] },
+    imageUrl: undefined,
+    description: undefined
   },
   {
     id: 'wizard',
@@ -169,6 +191,8 @@ export const ALL_CLASSES : FiveEClass[] = [
     skillChoices: [],
     features: [],
     subclasses: [],
-    startingEquipment: { guaranteed: [], choices: [] }
+    startingEquipment: { guaranteed: [], choices: [] },
+    imageUrl: undefined,
+    description: undefined
   }
 ];

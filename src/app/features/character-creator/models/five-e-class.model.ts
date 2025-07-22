@@ -47,6 +47,8 @@ export interface Subclass {
 }
 
 export interface FiveEClass {
+    imageUrl: any;
+    description: any;
     id: string;
     name: string;
     hitDie: number;
