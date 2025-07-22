@@ -1,6 +1,9 @@
-name: Angular CI Pipeline
+name: Angular CI/CD Pipeline
 on:
     pull_request:
+        branches:
+            - master
+    push:
         branches:
             - master
 
@@ -27,3 +30,12 @@ jobs:
             #   run: npm test -- --watch=false --browsers=ChromeHeadless
             - name: Build Application
               run: npm run build -- --configuration=production
+            - name: Copy index.html to 404.html for GitHub Pages SPA support
+              if: github.ref == 'refs/heads/master'
+              run: cp ./dist/dn-d5e-character-creator/index.html ./dist/dn-d5e-character-creator/404.html
+            - name: Deploy to GitHub Pages
+              if: github.ref == 'refs/heads/master'
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                publish_dir: ./dist/dn-d5e-character-creator

@@ -51,7 +51,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/DnD5eCharacterCreator/"
             },
             "development": {
               "optimization": false,
