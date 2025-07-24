@@ -4,7 +4,7 @@ import { CreationStepsTitles, CreationStepsDescriptions, CreationSteps, LinkPreN
 import { TipsLookup } from '../../../../shared/dictionaries/tips-lookup.dictionary';
 import { CarouselComponent } from "../../../../shared/components/carousel/carousel.component";
 import { ALL_CLASSES } from '../../../data/classes.data';
-import { ClassCardService } from '../../services/class-card.service';
+import { CharacterCreatorService } from '../../services/character-creator.service';
 
 @Component({
   selector: 'app-class-selection',
@@ -14,12 +14,12 @@ import { ClassCardService } from '../../services/class-card.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClassSelectionComponent {
-  classCardService = inject(ClassCardService);
+  characterCreatorService = inject(CharacterCreatorService);
   CreationSteps = CreationSteps;
   CreationStepsTitles = CreationStepsTitles;
   CreationStepsDescriptions = CreationStepsDescriptions;
   LinkPreNote = LinkPreNote;
   TipsLookup = TipsLookup;
 
-  carouselItems = this.classCardService.convertClassesToImageCards(ALL_CLASSES);
+  carouselItems = this.characterCreatorService.convertClassesToImageCards(ALL_CLASSES);
 }
