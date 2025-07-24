@@ -26,5 +26,5 @@ export class ClassSelectionComponent {
     LinkPreNote = LinkPreNote;
     TipsLookup = TipsLookup;
 
-    carouselItems = this.characterCreatorService.convertClassesToImageCards(ALL_CLASSES);
+    carouselItems = this.characterCreatorService.getClassCarouselItems();
 }
