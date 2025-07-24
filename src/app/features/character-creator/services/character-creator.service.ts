@@ -3,9 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ClassService{
+export class CharacterCreatorService {
 
-  get5eClasses() {
-    
-  }
+  constructor() { }
+
 }
