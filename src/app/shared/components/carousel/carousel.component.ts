@@ -64,7 +64,7 @@ export class CarouselComponent {
     clickedItem = signal<ImageCardData | null>(null);
 
 
-    onCardClicked($event: ImageCardData): void {
+    onCardClicked($event: ImageCardData | null): void {
         console.log('Card clicked:', $event);
         this.clickedItem.set($event);
     }

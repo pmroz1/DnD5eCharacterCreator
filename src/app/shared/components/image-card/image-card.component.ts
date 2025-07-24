@@ -64,7 +64,7 @@ export class ImageCardComponent {
     @Input() imageWidth: string = 'w-full';
     @Input() imageClass: string = '';
 
-    @Output() cardClick = new EventEmitter<ImageCardData>();
+    @Output() cardClick = new EventEmitter<ImageCardData | null>();
     @Input() isClicked: boolean = false;
 
     getCardClasses(): string {
@@ -77,6 +77,10 @@ export class ImageCardComponent {
     }
 
     onCardClick(): void {
+        if(this.isClicked){
+            this.cardClick.emit(null);
+            return;
+        }
         this.cardClick.emit(this.cardData);
     }
 
