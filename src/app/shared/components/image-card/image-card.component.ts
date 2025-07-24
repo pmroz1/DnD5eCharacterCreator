@@ -12,7 +12,7 @@ import { ImageCardData } from './models/image-card.model';
             class="group cursor-pointer transition-all duration-300 hover:shadow-xl"
             pRipple
             (click)="onCardClick()"
-            [ngClass]="isClicked ? 'border-4 border-amber-300' : ''"
+            [ngClass]="isClicked ? 'border-4 border-lime-600' : ''"
         >
             <div class="relative overflow-hidden rounded-t-lg">
                 <div
@@ -61,7 +61,7 @@ export class ImageCardComponent {
     @Input() cardHeight: string = 'h-auto';
     @Input() cardWidth: string = 'w-72';
     @Input() cardClass: string =
-        'bg-surface-0 dark:bg-surface-900 border border-surface-200 dark:border-surface-700 rounded-lg shadow-md';
+        'bg-surface-0 dark:bg-surface-900  rounded-lg shadow-md';
 
     @Input() imageHeight: string = 'h-100';
     @Input() imageWidth: string = 'w-full';
