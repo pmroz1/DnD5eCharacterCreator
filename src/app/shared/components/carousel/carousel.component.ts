@@ -9,6 +9,7 @@ import {
 import { CarouselModule } from 'primeng/carousel';
 import { ImageCardComponent } from '../image-card/image-card.component';
 import { ImageCardData } from '../image-card/models/image-card.model';
+import { CarouselResponsiveOptions } from './responsive-options.data';
 
 @Component({
     selector: 'app-carousel',
@@ -20,7 +21,7 @@ import { ImageCardData } from '../image-card/models/image-card.model';
             <p-carousel
                 [value]="items()"
                 [numVisible]="numVisible()"
-                [responsiveOptions]="responsiveOptions()"
+                [responsiveOptions]="responsiveOptions"
                 [numScroll]="3"
                 [circular]="true"
                 class="mt-5 mb-5"
@@ -50,43 +51,8 @@ export class CarouselComponent {
     readonly carouselClass = input<string>('');
     readonly itemClass = input<string>('');
     readonly numVisible = input<number>(9);
-    readonly responsiveOptions = input<any[]>([
-        {
-            breakpoint: '2800px',
-            numVisible: 6,
-            numScroll: 3,
-        },
-        {
-            breakpoint: '1920px',
-            numVisible: 5,
-            numScroll: 3,
-        },
-        {
-            breakpoint: '1600px',
-            numVisible: 4,
-            numScroll: 3,
-        },
-        {
-            breakpoint: '1200px',
-            numVisible: 3,
-            numScroll: 2,
-        },
-        {
-            breakpoint: '1024px',
-            numVisible: 2,
-            numScroll: 2,
-        },
-        {
-            breakpoint: '768px',
-            numVisible: 2,
-            numScroll: 1,
-        },
-        {
-            breakpoint: '560px',
-            numVisible: 1,
-            numScroll: 1,
-        },
-    ]);
+    readonly responsiveOptions = CarouselResponsiveOptions;
+
     clickedItem = signal<ImageCardData | null>(null);
 
     onCardClicked($event: ImageCardData | null): void {
