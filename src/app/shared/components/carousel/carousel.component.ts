@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, OnInit, signal, ViewEncapsulation } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { ImageCardComponent } from "../image-card/image-card.component";
-import { FiveEClass } from '../../../features/character-creator/models/five-e-class.model';
 import { ImageCardData } from '../image-card/models/image-card.model';
 
 @Component({
@@ -19,8 +18,7 @@ import { ImageCardData } from '../image-card/models/image-card.model';
             class="mt-5 mb-5"
         >
             <ng-template let-item #item class="p-carousel-item m-20">
-                <!-- <div class="border border-surface rounded-border m-2 p-4"></div> -->
-                 <app-image-card [cardData]="item"></app-image-card>
+                 <app-image-card [cardData]="item" (cardClick)="onCardClicked($event)" [isClicked]="clickedItem()?.title === item.title"></app-image-card>
             </ng-template>
         </p-carousel>
         } @else{
@@ -63,4 +61,11 @@ export class CarouselComponent {
             numVisible: 1,
         },
     ]);
+    clickedItem = signal<ImageCardData | null>(null);
+
+
+    onCardClicked($event: ImageCardData): void {
+        console.log('Card clicked:', $event);
+        this.clickedItem.set($event);
+    }
 }

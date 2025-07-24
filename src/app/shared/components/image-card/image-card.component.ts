@@ -15,9 +15,7 @@ import { ImageCardData } from './models/image-card.model';
             [ngClass]="isClicked ? 'border-4 border-lime-600' : ''"
         >
             <div class="relative overflow-hidden rounded-t-lg">
-                <div
-                    class="aspect-video bg-gradient-to-br"
-                >
+                <div class="aspect-video bg-gradient-to-br">
                     <img
                         [src]="cardData.imageUrl"
                         [alt]="cardData.title"
@@ -60,15 +58,14 @@ export class ImageCardComponent {
 
     @Input() cardHeight: string = 'h-auto';
     @Input() cardWidth: string = 'w-72';
-    @Input() cardClass: string =
-        'bg-surface-0 dark:bg-surface-900  rounded-lg shadow-md';
+    @Input() cardClass: string = 'bg-surface-0 dark:bg-surface-900 rounded-lg shadow-md box-border';
 
     @Input() imageHeight: string = 'h-100';
     @Input() imageWidth: string = 'w-full';
     @Input() imageClass: string = '';
 
     @Output() cardClick = new EventEmitter<ImageCardData>();
-    isClicked: boolean = false;
+    @Input() isClicked: boolean = false;
 
     getCardClasses(): string {
         return `${this.cardClass} ${this.cardHeight} ${this.cardWidth} relative overflow-hidden`;
@@ -80,7 +77,6 @@ export class ImageCardComponent {
     }
 
     onCardClick(): void {
-        this.isClicked = !this.isClicked; 
         this.cardClick.emit(this.cardData);
     }
 
