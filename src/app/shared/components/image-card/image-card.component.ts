@@ -9,10 +9,10 @@ import { ImageCardData } from './models/image-card.model';
     template: `
         <div
             [class]="getCardClasses()"
-            class="group cursor-pointer transition-all duration-300 hover:shadow-xl"
+            class="group cursor-pointer"
             pRipple
             (click)="onCardClick()"
-            [ngClass]="isClicked ? 'border-4 border-lime-600' : ''"
+            [ngClass]="isClicked ? 'border-2 border-lime-300' : 'border-2 border-transparent'"
         >
             <div class="relative overflow-hidden rounded-t-lg">
                 <div class="aspect-video bg-gradient-to-br">
@@ -20,23 +20,19 @@ import { ImageCardData } from './models/image-card.model';
                         [src]="cardData.imageUrl"
                         [alt]="cardData.title"
                         [class]="getImageClasses()"
-                        class="transition-transform duration-300 group-hover:scale-110"
                         (error)="onImageError($event)"
                         loading="lazy"
                     />
                 </div>
-                <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                ></div>
             </div>
             <div class="p-4 space-y-2">
                 <h3
-                    class="text-xl font-bold text-surface-900 dark:text-surface-50 line-clamp-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300"
+                    class="text-xl font-bold text-surface-900"
                 >
                     {{ cardData.title }}
                 </h3>
                 <p
-                    class="text-sm text-surface-600 dark:text-surface-400 line-clamp-3 leading-relaxed"
+                    class="text-sm leading-relaxed"
                 >
                     {{ cardData.description }}
                 </p>
