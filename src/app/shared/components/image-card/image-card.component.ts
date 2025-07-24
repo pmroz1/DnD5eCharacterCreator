@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
 import { ImageCardData } from './models/image-card.model';
@@ -9,38 +9,32 @@ import { ImageCardData } from './models/image-card.model';
     template: `
         <div
             [class]="getCardClasses()"
-            class="group cursor-pointer transition-all duration-300 hover:shadow-xl"
+            class="group cursor-pointer"
             pRipple
             (click)="onCardClick()"
-            [ngClass]="isClicked ? 'border-4 border-amber-300' : ''"
+            [ngClass]="isClicked ? 'border-2 border-lime-300' : 'border-2 border-transparent'"
         >
             <div class="relative overflow-hidden rounded-t-lg">
-                <div
-                    class="aspect-video bg-gradient-to-br"
-                >
+                <div class="aspect-video bg-gradient-to-br">
                     <img
-                        [src]="cardData.imageUrl"
-                        [alt]="cardData.title"
+                        [src]="cardData().imageUrl"
+                        [alt]="cardData().title"
                         [class]="getImageClasses()"
-                        class="transition-transform duration-300 group-hover:scale-110"
                         (error)="onImageError($event)"
                         loading="lazy"
                     />
                 </div>
-                <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                ></div>
             </div>
             <div class="p-4 space-y-2">
                 <h3
-                    class="text-xl font-bold text-surface-900 dark:text-surface-50 line-clamp-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300"
+                    class="text-xl font-bold text-surface-900"
                 >
-                    {{ cardData.title }}
+                    {{ cardData().title }}
                 </h3>
                 <p
-                    class="text-sm text-surface-600 dark:text-surface-400 line-clamp-3 leading-relaxed"
+                    class="text-sm leading-relaxed"
                 >
-                    {{ cardData.description }}
+                    {{ cardData().description }}
                 </p>
             </div>
         </div>
@@ -51,37 +45,39 @@ import { ImageCardData } from './models/image-card.model';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageCardComponent {
-    @Input() cardData: ImageCardData = {
+    readonly cardData = input<ImageCardData>({
         imageUrl: 'default-image-url.jpg',
         title: '',
         description: '',
         link: '',
-    };
+    });
 
-    @Input() cardHeight: string = 'h-auto';
-    @Input() cardWidth: string = 'w-72';
-    @Input() cardClass: string =
-        'bg-surface-0 dark:bg-surface-900 border border-surface-200 dark:border-surface-700 rounded-lg shadow-md';
+    readonly cardHeight = input<string>('h-auto');
+    readonly cardWidth = input<string>('w-72');
+    readonly cardClass = input<string>('bg-surface-0 dark:bg-surface-900 rounded-lg shadow-md box-border');
 
-    @Input() imageHeight: string = 'h-100';
-    @Input() imageWidth: string = 'w-full';
-    @Input() imageClass: string = '';
+    readonly imageHeight = input<string>('h-100');
+    readonly imageWidth = input<string>('w-full');
+    readonly imageClass = input<string>('');
 
-    @Output() cardClick = new EventEmitter<ImageCardData>();
-    isClicked: boolean = false;
+    @Output() cardClick = new EventEmitter<ImageCardData | null>();
+    @Input() isClicked: boolean = false;
 
     getCardClasses(): string {
-        return `${this.cardClass} ${this.cardHeight} ${this.cardWidth} relative overflow-hidden`;
+        return `${this.cardClass()} ${this.cardHeight()} ${this.cardWidth()} relative overflow-hidden`;
     }
 
     getImageClasses(): string {
         const baseClasses = 'object-cover';
-        return baseClasses + ' ' + this.imageClass + ' ' + this.imageHeight + ' ' + this.imageWidth;
+        return baseClasses + ' ' + this.imageClass() + ' ' + this.imageHeight() + ' ' + this.imageWidth();
     }
 
     onCardClick(): void {
-        this.isClicked = !this.isClicked; 
-        this.cardClick.emit(this.cardData);
+        if(this.isClicked){
+            this.cardClick.emit(null);
+            return;
+        }
+        this.cardClick.emit(this.cardData());
     }
 
     onImageError(event: Event) {
