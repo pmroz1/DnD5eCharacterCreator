@@ -17,8 +17,8 @@ import { ImageCardData } from './models/image-card.model';
             <div class="relative overflow-hidden rounded-t-lg">
                 <div class="aspect-video bg-gradient-to-br">
                     <img
-                        [src]="cardData.imageUrl"
-                        [alt]="cardData.title"
+                        [src]="cardData().imageUrl"
+                        [alt]="cardData().title"
                         [class]="getImageClasses()"
                         (error)="onImageError($event)"
                         loading="lazy"
@@ -29,12 +29,12 @@ import { ImageCardData } from './models/image-card.model';
                 <h3
                     class="text-xl font-bold text-surface-900"
                 >
-                    {{ cardData.title }}
+                    {{ cardData().title }}
                 </h3>
                 <p
                     class="text-sm leading-relaxed"
                 >
-                    {{ cardData.description }}
+                    {{ cardData().description }}
                 </p>
             </div>
         </div>
@@ -45,12 +45,12 @@ import { ImageCardData } from './models/image-card.model';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageCardComponent {
-    @Input() cardData: ImageCardData = {
+    readonly cardData = input<ImageCardData>({
         imageUrl: 'default-image-url.jpg',
         title: '',
         description: '',
         link: '',
-    };
+    });
 
     readonly cardHeight = input<string>('h-auto');
     readonly cardWidth = input<string>('w-72');
@@ -77,7 +77,7 @@ export class ImageCardComponent {
             this.cardClick.emit(null);
             return;
         }
-        this.cardClick.emit(this.cardData);
+        this.cardClick.emit(this.cardData());
     }
 
     onImageError(event: Event) {
