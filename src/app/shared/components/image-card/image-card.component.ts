@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
 import { ImageCardData } from './models/image-card.model';
@@ -52,24 +52,24 @@ export class ImageCardComponent {
         link: '',
     };
 
-    @Input() cardHeight: string = 'h-auto';
-    @Input() cardWidth: string = 'w-72';
-    @Input() cardClass: string = 'bg-surface-0 dark:bg-surface-900 rounded-lg shadow-md box-border';
+    readonly cardHeight = input<string>('h-auto');
+    readonly cardWidth = input<string>('w-72');
+    readonly cardClass = input<string>('bg-surface-0 dark:bg-surface-900 rounded-lg shadow-md box-border');
 
-    @Input() imageHeight: string = 'h-100';
-    @Input() imageWidth: string = 'w-full';
-    @Input() imageClass: string = '';
+    readonly imageHeight = input<string>('h-100');
+    readonly imageWidth = input<string>('w-full');
+    readonly imageClass = input<string>('');
 
     @Output() cardClick = new EventEmitter<ImageCardData | null>();
     @Input() isClicked: boolean = false;
 
     getCardClasses(): string {
-        return `${this.cardClass} ${this.cardHeight} ${this.cardWidth} relative overflow-hidden`;
+        return `${this.cardClass()} ${this.cardHeight()} ${this.cardWidth()} relative overflow-hidden`;
     }
 
     getImageClasses(): string {
         const baseClasses = 'object-cover';
-        return baseClasses + ' ' + this.imageClass + ' ' + this.imageHeight + ' ' + this.imageWidth;
+        return baseClasses + ' ' + this.imageClass() + ' ' + this.imageHeight() + ' ' + this.imageWidth();
     }
 
     onCardClick(): void {

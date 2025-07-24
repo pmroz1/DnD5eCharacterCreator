@@ -2,7 +2,6 @@ import {
     ChangeDetectionStrategy,
     Component,
     input,
-    OnInit,
     signal,
     ViewEncapsulation,
 } from '@angular/core';
