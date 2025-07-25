@@ -9,7 +9,7 @@ export interface FiveERace {
     size?: [number, number]; // [minHeight, maxHeight]
     creatureType?: CreatureType;
     subraces?: FiveESubrace[];
-    traits?: string[];
+    traits?: string[]; // TODO: move to separate trait model / dictionary
     languages?: (StandardLanguages | RareLanguages)[];
 }
 
