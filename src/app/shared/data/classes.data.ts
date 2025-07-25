@@ -4,12 +4,12 @@ import { FiveEClass } from '../models/five-e-class.model';
 export const CLASSES: FiveEClass[] = [
     {
         id: 'barbarian',
-        name: 'Barbarian',
+        name: 'Barbarian', // TODO: use dictionary
         hitDie: 12,
         primaryAbility: Ability.Strength,
         savingThrows: [Ability.Strength, Ability.Constitution],
-        armorProficiencies: ['Light armor', 'Medium armor', 'Shields'],
-        weaponProficiencies: ['Simple weapons', 'Martial weapons'],
+        armorProficiencies: ['Light armor', 'Medium armor', 'Shields'], // TODO: move to dictionary
+        weaponProficiencies: ['Simple weapons', 'Martial weapons'], // TODO: move to dictionary
         toolProficiencies: [],
         skillChoices: [],
         features: [],
