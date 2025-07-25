@@ -1,6 +1,6 @@
 import { BaseRecord } from "./base.model";
 
-export type Ability = 'STR' | 'DEX' | 'CON' | 'INT' | 'WIS' | 'CHA';
+export type Ability = 'STRENGTH' | 'DEXTERITY' | 'CONSTITUTION' | 'INTELLIGENCE' | 'WISDOM' | 'CHARISMA';
 
 export interface AbilityRequirement {
     ability: Ability;

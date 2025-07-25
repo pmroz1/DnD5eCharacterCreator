@@ -8,7 +8,7 @@ import {
 } from '@features/character-creator/dictionaries/creation-steps.dictionary';
 import { TipsLookup } from '@shared/dictionaries/tips-lookup.dictionary';
 import { CarouselComponent } from '@shared/components/carousel/carousel.component';
-import { CLASSES } from '@data/classes.data';
+import { CLASSES } from '@shared/data/classes.data';
 import { CharacterCreatorFacade } from '@features/character-creator/services/character-creator-facade.service';
 
 @Component({
