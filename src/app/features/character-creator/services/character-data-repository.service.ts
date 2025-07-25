@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ImageCardData } from '@shared/components/image-card/models/image-card.model';
 import { CLASSES } from '@shared/data/classes.data';
-import { BaseRecord } from '@features/character-creator/models/base.model';
+import { BaseRecord } from '@shared/models/base.model';
 import { RACES } from '@shared/data/races.data';
 
 @Injectable({

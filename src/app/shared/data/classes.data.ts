@@ -1,4 +1,4 @@
-import { FiveEClass } from '../../features/character-creator/models/five-e-class.model';
+import { FiveEClass } from '../models/five-e-class.model';
 
 export const CLASSES: FiveEClass[] = [
     {

@@ -1,4 +1,4 @@
-import { FiveERace } from '@features/character-creator/models/five-e-race.model';
+import { FiveERace } from '@shared/models/five-e-race.model';
 import { CreatureType } from '@shared/dictionaries/creature-type.dictionary';
 
 export const RACES: FiveERace[] = [
