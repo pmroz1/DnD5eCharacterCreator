@@ -1,4 +1,5 @@
-export type Ability = 'STR' | 'DEX' | 'CON' | 'INT' | 'WIS' | 'CHA';
+import { Ability } from "@shared/dictionaries/ability.dictionary";
+import { BaseRecord } from "./base.model";
 
 export interface AbilityRequirement {
     ability: Ability;
@@ -46,11 +47,9 @@ export interface Subclass {
     spellcasting?: SpellcastingProgression;
 }
 
-export interface FiveEClass {
+export interface FiveEClass extends BaseRecord {
     imageUrl: string;
     description: string;
-    id: string;
-    name: string;
     hitDie: number;
     primaryAbility: Ability;
     savingThrows: Ability[];

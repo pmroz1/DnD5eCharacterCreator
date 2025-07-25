@@ -1,0 +1,162 @@
+import { FiveERace } from '@shared/models/five-e-race.model';
+import { CreatureType } from '@shared/dictionaries/creature-type.dictionary';
+
+export const RACES: FiveERace[] = [
+    {
+        id: 'aasimar',
+        name: 'Aasimar',
+        description:
+            'Aasimar are humans with celestial heritage, often possessing divine abilities.',
+        imageUrl: 'assets/images/races/aasimar.png',
+        speed: 30,
+        size: [150, 200],
+        creatureType: CreatureType.Humanoid,
+        traits: [
+            'Darkvision: Can see in dim light within 60 feet as if it were bright light.',
+            'Celestial Resistance: Resistance to necrotic and radiant damage.',
+            'Healing Hands: Can heal a creature with a touch once per long rest.',
+        ],
+    },
+    {
+        id: 'dragonborn',
+        name: 'Dragonborn',
+        description: 'Dragonborn are proud and honorable warriors with draconic ancestry.',
+        imageUrl: 'assets/images/races/dragonborn.png',
+        speed: 30,
+        size: [180, 210],
+        creatureType: CreatureType.Humanoid,
+        traits: [
+            'Draconic Ancestry: Choose a dragon type and gain its elemental affinity.',
+            'Breath Weapon: Can unleash a breath weapon once per short rest.',
+            'Damage Resistance: Resistance to the damage type associated with your dragon ancestry.',
+        ],
+    },
+    {
+        id: 'dwarf',
+        name: 'Dwarf',
+        description: 'Dwarves are stout and hardy, known for their craftsmanship and resilience.',
+        imageUrl: 'assets/images/races/dwarf.png',
+        speed: 25,
+        size: [135, 180],
+        creatureType: CreatureType.Humanoid,
+        traits: [
+            'Darkvision: Can see in dim light within 60 feet as if it were bright light.',
+            'Dwarven Resilience: Advantage on saving throws against poison, and resistance against poison damage.',
+            'Stonecunning: Proficiency in History checks related to stonework.',
+        ],
+    },
+    {
+        id: 'elf',
+        name: 'Elf',
+        description: 'Elves are graceful and agile, with a deep connection to nature and magic.',
+        imageUrl: 'assets/images/races/elf.png',
+        speed: 30,
+        size: [160, 180],
+        creatureType: CreatureType.Humanoid,
+        traits: [
+            'Darkvision: Can see in dim light within 60 feet as if it were bright light.',
+            'Fey Ancestry: Advantage on saving throws against being charmed, and magic can’t put you to sleep.',
+            'Keen Senses: Proficiency in the Perception skill.',
+        ],
+    },
+    {
+        id: 'gnome',
+        name: 'Gnome',
+        description: 'Gnomes are small and clever, known for their inventiveness and curiosity.',
+        imageUrl: 'assets/images/races/gnome.png',
+        speed: 25,
+        size: [120, 150],
+        creatureType: CreatureType.Humanoid,
+        traits: [
+            'Darkvision: Can see in dim light within 60 feet as if it were bright light.',
+            'Gnome Cunning: Advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.',
+            'Artificer’s Lore: Proficiency in History checks related to magic items, alchemical objects, or technological devices.',
+        ],
+    },
+    {
+        id: 'goliath',
+        name: 'Goliath',
+        description: 'Goliaths are towering giants known for their strength and endurance.',
+        imageUrl: 'assets/images/races/goliath.png',
+        speed: 30,
+        size: [210, 240],
+        creatureType: CreatureType.Humanoid,
+        traits: [
+            'Mountain Born: Proficiency in Athletics checks, and can climb difficult surfaces.',
+            'Powerful Build: Count as one size larger when determining carrying capacity.',
+            'Stone’s Endurance: Can reduce damage taken by rolling a d12 and adding Constitution modifier.',
+        ],
+    },
+    {
+        id: 'halfling',
+        name: 'Halfling',
+        description: 'Halflings are small and nimble, known for their luck and resourcefulness.',
+        imageUrl: 'assets/images/races/halfling.png',
+        speed: 25,
+        size: [120, 150],
+        creatureType: CreatureType.Humanoid,
+        traits: [
+            'Lucky: When you roll a 1 on the d20 for your attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.',
+            'Brave: Advantage on saving throws against being frightened.',
+            'Halfling Nimbleness: Can move through the space of any creature that is of a size larger than yours.',
+        ],
+    },
+    {
+        id: 'half-elf',
+        name: 'Half-Elf',
+        description:
+            'Half-elves combine the best traits of humans and elves, excelling in adaptability.',
+        imageUrl: 'assets/images/races/half-elf.png',
+        speed: 30,
+        size: [160, 180],
+        creatureType: CreatureType.Humanoid,
+        traits: [
+            'Darkvision: Can see in dim light within 60 feet as if it were bright light.',
+            'Fey Ancestry: Advantage on saving throws against being charmed, and magic can’t put you to sleep.',
+            'Keen Senses: Proficiency in the Perception skill.',
+        ],
+    },
+    {
+        id: 'human',
+        name: 'Human',
+        description:
+            'Humans are versatile and ambitious, with a wide range of abilities and cultures.',
+        imageUrl: 'assets/images/races/human.png',
+        speed: 30,
+        size: [160, 180],
+        creatureType: CreatureType.Humanoid,
+        traits: [
+            'Versatile: Gain proficiency in one skill of your choice.',
+            'Cultural Adaptability: Can speak, read, and write Common and one extra language of your choice.',
+        ],
+    },
+    {
+        id: 'orc',
+        name: 'Orc',
+        description: 'Orcs are fierce and strong, often misunderstood but capable of great honor.',
+        imageUrl: 'assets/images/races/orc.png',
+        speed: 30,
+        size: [180, 210],
+        creatureType: CreatureType.Humanoid,
+        traits: [
+            'Darkvision: Can see in dim light within 60 feet as if it were bright light.',
+            'Menacing: Proficiency in the Intimidation skill.',
+            'Relentless Endurance: When reduced to 0 hit points, can drop to 1 hit point instead.',
+        ],
+    },
+    {
+        id: 'tiefling',
+        name: 'Tiefling',
+        description:
+            'Tieflings are humans with fiendish ancestry, often possessing infernal powers.',
+        imageUrl: 'assets/images/races/tiefling.png',
+        speed: 30,
+        size: [160, 180],
+        creatureType: CreatureType.Humanoid,
+        traits: [
+            'Darkvision: Can see in dim light within 60 feet as if it were bright light.',
+            'Hellish Resistance: Resistance to fire damage.',
+            'Infernal Legacy: Can cast certain spells innately.',
+        ],
+    },
+];
