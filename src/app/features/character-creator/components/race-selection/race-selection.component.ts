@@ -13,25 +13,25 @@ import { CarouselComponent } from '@shared/components/carousel/carousel.componen
 @Component({
     selector: 'app-race-selection',
     imports: [Card, CarouselComponent],
-    template: `<p-card [header]="CreationStepsTitles[CreationSteps.ClassSelection]" class="mb-4">
+    template: `<p-card [header]="CreationStepsTitles[CreationSteps.RaceSelection]" class="mb-4">
         <p class="m-0">
-            {{ CreationStepsDescriptions[CreationSteps.ClassSelection] }}
+            {{ CreationStepsDescriptions[CreationSteps.RaceSelection] }}
             <br />
             {{ LinkPreNote }}
             <br />
             <a
-                [href]="TipsLookup.Classes"
+                [href]="TipsLookup.Races"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-blue-200 hover:underline"
             >
-                {{ TipsLookup.Classes }}</a
+                {{ TipsLookup.Races }}</a
             >
         </p>
 
         <app-carousel [items]="carouselItems"></app-carousel>
     </p-card> `,
-    styleUrl: './race-selection.component.css',
+    styleUrl: './race-selection.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RaceSelectionComponent {
