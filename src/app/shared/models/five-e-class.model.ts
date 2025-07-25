@@ -1,6 +1,5 @@
+import { Ability } from "@shared/dictionaries/ability.dictionary";
 import { BaseRecord } from "./base.model";
-
-export type Ability = 'STRENGTH' | 'DEXTERITY' | 'CONSTITUTION' | 'INTELLIGENCE' | 'WISDOM' | 'CHARISMA';
 
 export interface AbilityRequirement {
     ability: Ability;
