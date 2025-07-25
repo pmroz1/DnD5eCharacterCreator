@@ -1,10 +1,8 @@
 import { CreatureType } from '@shared/dictionaries/creature-type.dictionary';
 import { StandardLanguages, RareLanguages } from '@shared/dictionaries/languages.dictionary';
+import { BaseRecord } from './base.record';
 
-export interface FiveERace {
-    title: string;
-    description: string;
-    imageUrl?: string;
+export interface FiveERace extends BaseRecord {
     speed?: number;
     size?: [number, number]; // [minHeight, maxHeight]
     creatureType?: CreatureType;

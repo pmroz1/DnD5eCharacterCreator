@@ -1,27 +1,29 @@
 import { Injectable } from '@angular/core';
 import { FiveEClass } from '../models/five-e-class.model';
 import { ImageCardData } from '../../../shared/components/image-card/models/image-card.model';
-import { ALL_CLASSES } from '@features/data/classes.data';
+import { CLASSES } from '@features/data/classes.data';
+import { race } from 'rxjs';
+import { BaseRecord } from '../models/base.record';
+import { RACES } from '@features/data/races.data';
 
 @Injectable({
     providedIn: 'root',
 })
 export class CharacterCreatorService {
-    convertClassToImageCard(fiveEClass: FiveEClass): ImageCardData {
+    convertToImageCardData(record: BaseRecord): ImageCardData {
         return {
-            imageUrl: fiveEClass.imageUrl,
-            title: fiveEClass.name,
-            description: fiveEClass.description,
-            link: `/character-creator/class/${fiveEClass.id}`,
+            imageUrl: record.imageUrl ,
+            title: record.name,
+            description: record.description,
+            // link: `/character-creator/class/${record.id}`,
         };
     }
 
     getClassCarouselItems(): ImageCardData[] {
-        return ALL_CLASSES.map((cls) => this.convertClassToImageCard(cls));
+        return CLASSES.map((cls) => this.convertToImageCardData(cls));
     }
 
     getRaceCarouselItems(): ImageCardData[] {
-        // This method should return the race carousel items
-        return [];
+        return RACES.map((race) => this.convertToImageCardData(race));
     }
 }

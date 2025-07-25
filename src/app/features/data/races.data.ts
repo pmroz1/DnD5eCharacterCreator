@@ -1,9 +1,10 @@
 import { FiveERace } from '@features/character-creator/models/five-e-race.model';
 import { CreatureType } from '@shared/dictionaries/creature-type.dictionary';
 
-export const RacesData: FiveERace[] = [
+export const RACES: FiveERace[] = [
     {
-        title: 'Aasimar',
+        id: 'aasimar',
+        name: 'Aasimar',
         description:
             'Aasimar are humans with celestial heritage, often possessing divine abilities.',
         imageUrl: 'assets/images/races/aasimar.png',
@@ -17,7 +18,8 @@ export const RacesData: FiveERace[] = [
         ],
     },
     {
-        title: 'Dragonborn',
+        id: 'dragonborn',
+        name: 'Dragonborn',
         description: 'Dragonborn are proud and honorable warriors with draconic ancestry.',
         imageUrl: 'assets/images/races/dragonborn.png',
         speed: 30,
@@ -30,7 +32,8 @@ export const RacesData: FiveERace[] = [
         ],
     },
     {
-        title: 'Dwarf',
+        id: 'dwarf',
+        name: 'Dwarf',
         description: 'Dwarves are stout and hardy, known for their craftsmanship and resilience.',
         imageUrl: 'assets/images/races/dwarf.png',
         speed: 25,
@@ -43,7 +46,8 @@ export const RacesData: FiveERace[] = [
         ],
     },
     {
-        title: 'Elf',
+        id: 'elf',
+        name: 'Elf',
         description: 'Elves are graceful and agile, with a deep connection to nature and magic.',
         imageUrl: 'assets/images/races/elf.png',
         speed: 30,
@@ -56,7 +60,8 @@ export const RacesData: FiveERace[] = [
         ],
     },
     {
-        title: 'Gnome',
+        id: 'gnome',
+        name: 'Gnome',
         description: 'Gnomes are small and clever, known for their inventiveness and curiosity.',
         imageUrl: 'assets/images/races/gnome.png',
         speed: 25,
@@ -69,7 +74,8 @@ export const RacesData: FiveERace[] = [
         ],
     },
     {
-        title: 'Goliath',
+        id: 'goliath',
+        name: 'Goliath',
         description: 'Goliaths are towering giants known for their strength and endurance.',
         imageUrl: 'assets/images/races/goliath.png',
         speed: 30,
@@ -82,7 +88,8 @@ export const RacesData: FiveERace[] = [
         ],
     },
     {
-        title: 'Halfling',
+        id: 'halfling',
+        name: 'Halfling',
         description: 'Halflings are small and nimble, known for their luck and resourcefulness.',
         imageUrl: 'assets/images/races/halfling.png',
         speed: 25,
@@ -95,7 +102,8 @@ export const RacesData: FiveERace[] = [
         ],
     },
     {
-        title: 'Half-Elf',
+        id: 'half-elf',
+        name: 'Half-Elf',
         description:
             'Half-elves combine the best traits of humans and elves, excelling in adaptability.',
         imageUrl: 'assets/images/races/half-elf.png',
@@ -109,7 +117,8 @@ export const RacesData: FiveERace[] = [
         ],
     },
     {
-        title: 'Human',
+        id: 'human',
+        name: 'Human',
         description:
             'Humans are versatile and ambitious, with a wide range of abilities and cultures.',
         imageUrl: 'assets/images/races/human.png',
@@ -122,7 +131,8 @@ export const RacesData: FiveERace[] = [
         ],
     },
     {
-        title: 'Orc',
+        id: 'orc',
+        name: 'Orc',
         description: 'Orcs are fierce and strong, often misunderstood but capable of great honor.',
         imageUrl: 'assets/images/races/orc.png',
         speed: 30,
@@ -135,7 +145,8 @@ export const RacesData: FiveERace[] = [
         ],
     },
     {
-        title: 'Tiefling',
+        id: 'tiefling',
+        name: 'Tiefling',
         description:
             'Tieflings are humans with fiendish ancestry, often possessing infernal powers.',
         imageUrl: 'assets/images/races/tiefling.png',
