@@ -9,7 +9,7 @@ import {
 import { TipsLookup } from '@shared/dictionaries/tips-lookup.dictionary';
 import { CarouselComponent } from '@shared/components/carousel/carousel.component';
 import { CLASSES } from '@data/classes.data';
-import { CharacterCreatorService } from '@features/character-creator/services/character-creator.service';
+import { CharacterCreatorFacade } from '@features/character-creator/services/character-creator-facade.service';
 
 @Component({
     selector: 'app-class-selection',
@@ -19,12 +19,12 @@ import { CharacterCreatorService } from '@features/character-creator/services/ch
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClassSelectionComponent {
-    characterCreatorService = inject(CharacterCreatorService);
+    CharacterCreatorFacade = inject(CharacterCreatorFacade);
     CreationSteps = CreationSteps;
     CreationStepsTitles = CreationStepsTitles;
     CreationStepsDescriptions = CreationStepsDescriptions;
     LinkPreNote = LinkPreNote;
     TipsLookup = TipsLookup;
 
-    carouselItems = this.characterCreatorService.getClassCarouselItems();
+    carouselItems = this.CharacterCreatorFacade.getClassCarouselItems();
 }

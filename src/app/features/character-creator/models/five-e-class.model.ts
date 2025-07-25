@@ -1,4 +1,4 @@
-import { BaseRecord } from "./base.record";
+import { BaseRecord } from "./base.model";
 
 export type Ability = 'STR' | 'DEX' | 'CON' | 'INT' | 'WIS' | 'CHA';
 

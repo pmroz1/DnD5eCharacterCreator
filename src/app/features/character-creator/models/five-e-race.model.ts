@@ -1,6 +1,6 @@
 import { CreatureType } from '@shared/dictionaries/creature-type.dictionary';
 import { StandardLanguages, RareLanguages } from '@shared/dictionaries/languages.dictionary';
-import { BaseRecord } from './base.record';
+import { BaseRecord } from './base.model';
 
 export interface FiveERace extends BaseRecord {
     speed?: number;
