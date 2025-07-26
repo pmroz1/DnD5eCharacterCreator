@@ -11,45 +11,84 @@ export enum FeatureType {
     AbilityScoreImprovement = 'Ability Score Improvement',
     ClassFeature = 'Class Feature',
     RaceFeature = 'Race Feature',
-    Weapon = "Weapon",
-    Armor = "Armor"
+    Weapon = 'Weapon',
+    Armor = 'Armor',
 }
 
-export enum Feat{
+export enum Feat {
     AbilityScoreImprovement = 'Ability Score Improvement',
+    Actor = 'Actor',
     Alert = 'Alert',
     Archery = 'Archery',
+    Athlete = 'Athlete',
+    BlindFighting = 'Blind Fighting',
     BoonOfCombatProwess = 'Boon of Combat Prowess',
     BoonOfDimensionalTravel = 'Boon of Dimensional Travel',
+    BoonOfEnergyResistance = 'Boon of Energy Resistance',
     BoonOfFate = 'Boon of Fate',
+    BoonOfFortitude = 'Boon of Fortitude',
     BoonOfIrresistableOffense = 'Boon of Irresistable Offense',
-    BoonOfTheNightSpirit = 'Boon of the Night Spirit',
+    BoonOfRecovery = 'Boon of Recovery',
+    BoonOfSkill = 'Boon of Skill',
+    BoonOfSpeed = 'Boon of Speed',
     BoonOfSpellRecall = 'Boon of Spell Recall',
+    BoonOfTheNightSpirit = 'Boon of the Night Spirit',
     BoonOfTruesight = 'Boon of Truesight',
+    Charger = 'Charger',
+    Chef = 'Chef',
+    Crafter = 'Crafter',
+    CrossbowExpert = 'Crossbow Expert',
+    Crusher = 'Crusher',
     Defense = 'Defense',
+    DefensiveDuelist = 'Defensive Duelist',
+    DualWielder = 'Dual Wielder',
+    Dueling = 'Dueling',
+    Durable = 'Durable',
+    ElementalAdept = 'Elemental Adept*',
+    FeyTouched = 'Fey Touched',
     Grappler = 'Grappler',
     GreatWeaponFighting = 'Great Weapon Fighting',
-    MagicInitiate = 'Magic Initiate',
+    GreatWeaponMaster = 'Great Weapon Master',
+    Healer = 'Healer',
+    HeavyArmored = 'Heavy Armored',
+    HeavyArmorMaster = 'Heavy Armor Master',
+    InspiringLeader = 'Inspiring Leader',
+    Interception = 'Interception',
+    KeenMind = 'Keen Mind',
+    LightlyArmored = 'Lightly Armored',
+    Lucky = 'Lucky',
+    MageSlayer = 'Mage Slayer',
+    MagicInitiate = 'Magic Initiate*',
+    MartialWeaponTraining = 'Martial Weapon Training',
+    MartialWeaponMaster = 'Martial Weapon Master',
+    ModeratelyArmored = 'Moderately Armored',
+    MountedCombatant = 'Mounted Combatant',
+    Musician = 'Musician',
+    Observant = 'Observant',
+    Piercer = 'Piercer',
+    Poisoner = 'Poisoner',
+    PolearmMaster = 'Polearm Master',
+    Protection = 'Protection',
+    Resilient = 'Resilient',
+    RitualCaster = 'Ritual Caster',
     SavageAttacker = 'Savage Attacker',
-    Skilled = 'Skilled',
+    Sentinel = 'Sentinel',
+    ShadowTouched = 'Shadow Touched',
+    Sharpshooter = 'Sharpshooter',
+    ShieldMaster = 'Shield Master',
+    Skilled = 'Skilled*',
+    SkillExpert = 'Skill Expert',
+    Skulker = 'Skulker',
+    Slasher = 'Slasher',
+    Speedy = 'Speedy',
+    SpellSniper = 'Spell Sniper',
+    TavernBrawler = 'Tavern Brawler',
+    Telekinetic = 'Telekinetic',
+    Telepathic = 'Telepathic',
+    ThrownWeaponMaster = 'Thrown Weapon Master',
+    Tough = 'Tough',
     TwoWeaponFighting = 'Two-Weapon Fighting',
-    BoonOfIrresistibleOffense = "BoonOfIrresistibleOffense"
+    UnarmedFighting = 'Unarmed Fighting',
+    WarCaster = 'War Caster',
+    WeaponMaster = 'Weapon Master',
 }
-
-// Ability Score Improvement*	General
-// Alert	Origin
-// Archery	Fighting Style
-// Boon of Combat Prowess	Epic Boon
-// Boon of Dimensional Travel	Epic Boon
-// Boon of Fate	Epic Boon
-// Boon of Irresistable Offense	Epic Boon
-// Boon of the Night Spirit	Epic Boon
-// Boon of Spell Recall	Epic Boon
-// Boon of Truesight	Epic Boon
-// Defense	Fighting Style
-// Grappler	General
-// Great Weapon Fighting	Fighting Style
-// Magic Initiate*	Origin
-// Savage Attacker	Origin
-// Skilled*	Origin
-// Two-Weapon Fighting	Fighting Style

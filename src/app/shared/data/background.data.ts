@@ -1,4 +1,4 @@
-import { OriginModel as BackgroundModel } from '@shared/models/origin.model';
+import { BackgroundModel } from '@shared/models/origin.model';
 import { Ability } from '@shared/dictionaries/ability.dictionary';
 import { BackgroundDictionary } from '@shared/dictionaries/background.dictionary';
 import { Skills } from '@shared/dictionaries/skills.dictionary';

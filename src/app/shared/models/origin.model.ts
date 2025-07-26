@@ -4,7 +4,7 @@ import { ToolProficiencies } from '@shared/dictionaries/tool-proficiences.dictio
 import { Ability } from '@shared/dictionaries/ability.dictionary';
 import { FeatModel } from './feat.model';
 
-export interface OriginModel extends BaseRecord {
+export interface BackgroundModel extends BaseRecord {
     abilities: Ability[]; // e.g., { Strength: 1, Dexterity: 2 }
     skills: Skills[];
     feats: FeatModel[];
