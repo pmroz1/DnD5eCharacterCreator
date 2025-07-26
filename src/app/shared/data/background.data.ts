@@ -15,7 +15,7 @@ export const BACKGROUNDS: BackgroundModel[] = [
             guaranteed: [],
             choices: [],
         },
-        imageUrl: 'assets/images/origins/acolyte.jpg',
+        imageUrl: 'assets/images/origins/acolyte.png',
         description: 'You have spent your life in the service of a temple to a specific god.',
     },
     {
@@ -29,7 +29,7 @@ export const BACKGROUNDS: BackgroundModel[] = [
             guaranteed: [],
             choices: [],
         },
-        imageUrl: 'assets/images/origins/artisan.jpg',
+        imageUrl: 'assets/images/origins/artisan.png',
         description: 'You have honed your skills in a specific craft or trade.',
     },
     {
@@ -43,7 +43,7 @@ export const BACKGROUNDS: BackgroundModel[] = [
             guaranteed: [],
             choices: [],
         },
-        imageUrl: 'assets/images/origins/criminal.jpg',
+        imageUrl: 'assets/images/origins/criminal.png',
         description: 'You have a history of illegal activities and dealings.',
     },
     {
@@ -57,7 +57,7 @@ export const BACKGROUNDS: BackgroundModel[] = [
             guaranteed: [],
             choices: [],
         },
-        imageUrl: 'assets/images/origins/folk-hero.jpg',
+        imageUrl: 'assets/images/origins/folk-hero.png',
         description: 'You are a champion of the common people, known for your deeds of heroism.',
     },
 ];
