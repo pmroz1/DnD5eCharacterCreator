@@ -8,10 +8,11 @@ import {
 import { TipsLookup } from '@shared/dictionaries/tips-lookup.dictionary';
 import { CarouselComponent } from '@shared/components/carousel/carousel.component';
 import { CharacterCreatorFacade } from '@features/character-creator/services/character-creator-facade.service';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @Component({
     selector: 'app-class-selection',
-    imports: [CardModule, CarouselComponent],
+    imports: [CardModule, CarouselComponent, FieldsetModule],
     templateUrl: './class-selection.component.html',
     styleUrl: './class-selection.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,

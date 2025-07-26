@@ -7,10 +7,11 @@ import {
 import { AccordionModule } from 'primeng/accordion';
 import { CharacterCreatorFacade } from '@features/character-creator/services/character-creator-facade.service';
 import { CarouselComponent } from '@shared/components/carousel/carousel.component';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @Component({
     selector: 'app-background-selection',
-    imports: [AccordionModule, CarouselComponent],
+    imports: [AccordionModule, CarouselComponent, FieldsetModule],
     templateUrl: './background-selection.component.html',
     styleUrl: './background-selection.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
