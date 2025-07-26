@@ -31,6 +31,7 @@ import { CarouselResponsiveOptions } from './responsive-options.data';
                             [cardData]="item"
                             (cardClick)="onCardClicked($event)"
                             [isClicked]="clickedItem()?.title === item.title"
+                            [cardClass]="'itemClass'"
                         ></app-image-card>
                     </div>
                 </ng-template>
