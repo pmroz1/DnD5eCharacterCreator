@@ -4,14 +4,14 @@
             <p-accordion-header>{{ BackgroundSteps.Race }}</p-accordion-header>
             <p-accordion-content>
                 <p class="m-0">{{ CreationStepsDescriptions.BackgroundSelection }}</p>
-                <app-carousel [items]="carouselItems"></app-carousel>
+                <app-carousel [items]="racesCarouselItems"></app-carousel>
             </p-accordion-content>
         </p-accordion-panel>
         <p-accordion-panel value="1">
             <p-accordion-header>{{ BackgroundSteps.Background }}</p-accordion-header>
             <p-accordion-content>
                 <p class="m-0">{{ CreationStepsDescriptions.BackgroundSelection }}</p>
-                <app-image-accordion [items]="[]"></app-image-accordion>
+                <app-image-accordion [items]="backgroundAccordionItems"></app-image-accordion>
             </p-accordion-content>
         </p-accordion-panel>
         <p-accordion-panel value="2">

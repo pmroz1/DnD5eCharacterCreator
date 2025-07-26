@@ -4,11 +4,12 @@ import { CLASSES } from '@shared/data/classes.data';
 import { BaseRecord } from '@shared/models/base.model';
 import { RACES } from '@shared/data/races.data';
 import { CharacterDataRepositoryService } from './character-data-repository.service';
+import { ImageAccordionItem } from '@shared/components/image-accordion/models/image-accordion.model';
 
 @Injectable({
     providedIn: 'root',
 })
-export class CharacterCreatorFacade{
+export class CharacterCreatorFacade {
     characterDataRepositoryService = inject(CharacterDataRepositoryService);
 
     getClassCarouselItems(): ImageCardData[] {
@@ -17,5 +18,9 @@ export class CharacterCreatorFacade{
 
     getRaceCarouselItems(): ImageCardData[] {
         return this.characterDataRepositoryService.getRaceCarouselItems();
+    }
+
+    getBackgroundAccordionItems(): ImageAccordionItem[] {
+        return this.characterDataRepositoryService.getBackgroundAccordionItems();
     }
 }

@@ -8,7 +8,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { CharacterCreatorFacade } from '@features/character-creator/services/character-creator-facade.service';
 import { CarouselComponent } from '@shared/components/carousel/carousel.component';
 import { FieldsetModule } from 'primeng/fieldset';
-import { ImageAccordionComponent } from "@shared/components/image-accordion/image-accordion.component";
+import { ImageAccordionComponent } from '@shared/components/image-accordion/image-accordion.component';
 
 @Component({
     selector: 'app-background-selection',
@@ -23,5 +23,6 @@ export class BackgroundSelectionComponent {
     CreationStepsDescriptions = CreationStepsDescriptions;
     BackgroundSteps = BackgroundSteps;
 
-    carouselItems = this.characterCreatorFacade.getRaceCarouselItems();
+    racesCarouselItems = this.characterCreatorFacade.getRaceCarouselItems();
+    backgroundAccordionItems = this.characterCreatorFacade.getBackgroundAccordionItems();
 }
