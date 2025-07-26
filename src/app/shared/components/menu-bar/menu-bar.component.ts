@@ -3,25 +3,27 @@ import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { Dialog } from 'primeng/dialog';
+import { DiceComponent } from '@shared/dice/dice.component';
 
 @Component({
     selector: 'app-menu-bar',
     standalone: true,
-    imports: [MenubarModule, ButtonModule, Dialog],
+    imports: [MenubarModule, ButtonModule, Dialog, DiceComponent],
     template: `<p-menubar [model]="items">
         <ng-template pTemplate="end"
             ><p-button label="Roll a dice!" severity="warn" (click)="showDialog()" />
-            <p-dialog
-                header="Header"
-                [modal]="true"
-                [(visible)]="visible"
-                [style]="{ width: '50rem' }"
-            >
-                <p>Dialog content goes here...</p>
-            </p-dialog>
+            <div class="card flex justify-center">
+                <p-dialog
+                    maskStyleClass="backdrop-blur-sm"
+                    [(visible)]="visible"
+                    styleClass="!border-0 !bg-transparent"
+                >
+                    <ng-template #headless><app-dice></app-dice></ng-template>
+                </p-dialog>
+            </div>
         </ng-template>
     </p-menubar>`,
-    styleUrl: './menu-bar.component.scss',
+    styles: ``,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuBarComponent {
