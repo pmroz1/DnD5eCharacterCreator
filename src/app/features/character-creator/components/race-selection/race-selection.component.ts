@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
     CreationSteps,
     CreationStepsDescriptions,
-    CreationStepsTitles,
     LinkPreNote,
 } from '@features/character-creator/dictionaries/creation-steps.dictionary';
 import { CharacterCreatorFacade } from '@features/character-creator/services/character-creator-facade.service';
@@ -13,9 +12,9 @@ import { CarouselComponent } from '@shared/components/carousel/carousel.componen
 @Component({
     selector: 'app-race-selection',
     imports: [Card, CarouselComponent],
-    template: `<p-card [header]="CreationStepsTitles[CreationSteps.RaceSelection]" class="mb-4">
+    template: `<p-card [header]="CreationSteps.BackgroundSelection" class="mb-4">
         <p class="m-0">
-            {{ CreationStepsDescriptions[CreationSteps.RaceSelection] }}
+            {{ CreationStepsDescriptions[CreationSteps.BackgroundSelection] }}
             <br />
             {{ LinkPreNote }}
             <br />
@@ -37,7 +36,6 @@ import { CarouselComponent } from '@shared/components/carousel/carousel.componen
 export class RaceSelectionComponent {
     characterCreatorFacade = inject(CharacterCreatorFacade);
     CreationSteps = CreationSteps;
-    CreationStepsTitles = CreationStepsTitles;
     CreationStepsDescriptions = CreationStepsDescriptions;
     LinkPreNote = LinkPreNote;
     TipsLookup = TipsLookup;
