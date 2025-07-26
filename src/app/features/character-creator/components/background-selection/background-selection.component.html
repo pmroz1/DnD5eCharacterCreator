@@ -1,0 +1,25 @@
+<div class="flex-col">
+    <p-accordion [value]="['0']" [multiple]="true">
+        <p-accordion-panel value="0">
+            <p-accordion-header>{{ BackgroundSteps.Race }}</p-accordion-header>
+            <p-accordion-content>
+                <p class="m-0">//add description here (enum?)</p>
+                <app-race-selection></app-race-selection>
+            </p-accordion-content>
+        </p-accordion-panel>
+        <p-accordion-panel value="1">
+            <p-accordion-header>{{ BackgroundSteps.Background }}</p-accordion-header>
+            <p-accordion-content>
+                <p class="m-0">//add description here (enum?)</p>
+                <app-background-selection></app-background-selection>
+            </p-accordion-content>
+        </p-accordion-panel>
+        <p-accordion-panel value="2">
+            <p-accordion-header>{{ BackgroundSteps.Languages }}</p-accordion-header>
+            <p-accordion-content>
+                <p class="m-0">//add description here (enum?)</p>
+                <!-- Add component for language selection here -->
+            </p-accordion-content>
+        </p-accordion-panel>
+    </p-accordion>
+</div>
