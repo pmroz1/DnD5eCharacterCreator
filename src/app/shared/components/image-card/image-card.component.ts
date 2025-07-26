@@ -12,7 +12,7 @@ import { ImageCardData } from './models/image-card.model';
             class="group cursor-pointer"
             pRipple
             (click)="onCardClick()"
-            [ngClass]="isClicked ? 'border-2 border-lime-300' : 'border-2 border-transparent'"
+            [ngClass]="isClicked ? 'rounded-lg box-border border-2 border-lime-600' : 'border-2 border-transparent'"
         >
             <div class="relative overflow-hidden rounded-t-lg">
                 <div class="aspect-video bg-gradient-to-br">
@@ -57,7 +57,7 @@ export class ImageCardComponent {
     readonly cardClass = input<string>('bg-surface-0 dark:bg-surface-900 rounded-lg shadow-md box-border');
 
     readonly maxImageHeight = input<string>('');
-    readonly maxImageWidth = input<string>('');
+    readonly maxImageWidth = input<string>('w-full');
     readonly imageClass = input<string>('');
 
     @Output() cardClick = new EventEmitter<ImageCardData | null>();
