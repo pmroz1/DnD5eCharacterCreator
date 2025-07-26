@@ -1,10 +1,14 @@
 <p-card [header]="CreationSteps.ClassSelection" class="mb-4">
     <p class="m-0">
-        {{ CreationStepsDescriptions[CreationSteps.ClassSelection] }}
+        {{ CreationStepsDescriptions.ClassSelection }}
         <br />
-        {{ LinkPreNote }}
-        <br />
-        <a [href]="TipsLookup.Classes" target="_blank" rel="noopener noreferrer" class="text-blue-200 hover:underline">
+        {{ LinkPreNote }}<br />
+        <a
+            [href]="TipsLookup.Classes"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-200 hover:underline"
+        >
             {{ TipsLookup.Classes }}</a
         >
     </p>
