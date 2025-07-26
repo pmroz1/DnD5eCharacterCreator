@@ -16,10 +16,10 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
                 <div
                     class="flex flex-row items-center justify-center mt-4 border-2 border-dashed border-gray-300 rounded-lg p-4 h-50 w-300"
                 >
-                    @for(dice of selectedDices(); track dice; let idx = $index) {
+                    @for(dice of selectedDices(); track idx; let idx = $index) {
                     <p-overlaybadge value="D{{ dice }}" class="mr-20">
                         <div
-                            class="w-15 h-15 rounded-lg flex items-center justify-center text-white"
+                            class="w-15 h-15 rounded-lg flex items-center justify-center text-white group cursor-pointer"
                             severity="secondary"
                             [class]="dice === 20 ? 'bg-yellow-500' : 'bg-blue-500'"
                             (click)="rollDice()"
@@ -92,7 +92,11 @@ export class DiceComponent {
     rollDice() {
         throw new Error('Method not implemented.');
     }
-    
+
+    rollAllDices() {
+        throw new Error('Method not implemented.');
+    }
+
     clearRolls() {
         this.selectedDices().length = 0;
     }
