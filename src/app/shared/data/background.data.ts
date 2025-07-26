@@ -1,12 +1,12 @@
-import { OriginModel } from '@shared/models/origin.model';
+import { OriginModel as BackgroundModel } from '@shared/models/origin.model';
 import { Ability } from '@shared/dictionaries/ability.dictionary';
-import { OriginDictionary } from '@shared/dictionaries/origin.dictionary';
+import { BackgroundDictionary } from '@shared/dictionaries/background.dictionary';
 import { Skills } from '@shared/dictionaries/skills.dictionary';
 
-export const ORIGINS: OriginModel[] = [
+export const BACKGROUNDS: BackgroundModel[] = [
     {
-        id: OriginDictionary.Acolyte,
-        name: OriginDictionary.Acolyte,
+        id: BackgroundDictionary.Acolyte,
+        name: BackgroundDictionary.Acolyte,
         abilities: [Ability.Intelligence, Ability.Wisdom, Ability.Charisma],
         skills: [Skills.Insight, Skills.Religion],
         feats: [],
