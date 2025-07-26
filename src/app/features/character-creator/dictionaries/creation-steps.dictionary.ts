@@ -1,28 +1,42 @@
 export enum CreationSteps {
-    ClassSelection = 'class-selection',
-    RaceSelection = 'race-selection',
-    OriginSelection = 'origin-selection',
-    AbilityScores = 'ability-scores',
-    Alignment = 'alignment',
-    Details = 'details',
+    ClassSelection = 'Determine Class',
+    BackgroundSelection = 'Determine Background',
+    AbilityScores = 'Determine Ability Scores',
+    Alignment = 'Determine Alignment',
+    Details = 'Provide Details',
+    Overview = 'Review Character',
+    // sub-steps
+    Species = 'Select Your Species',
+    Background = 'Select Your Background',
+    Languages = 'Select Your Languages',
+    Equipment = 'Select Your Equipment',
+    Spells = 'Select Your Spells',
+    Feats = 'Select Your Feats',
+    Skills = 'Select Your Skills',
+    PersonalityTraits = 'Select Your Personality Traits',
+    Ideals = 'Select Your Ideals',
+    Bonds = 'Select Your Bonds',
 }
 
-export const CreationStepsTitles = {
-    [CreationSteps.ClassSelection]: 'Class Selection',
-    [CreationSteps.RaceSelection]: 'Race Selection',
-    [CreationSteps.OriginSelection]: 'Origin Selection',
-    [CreationSteps.AbilityScores]: 'Ability Scores',
-    [CreationSteps.Alignment]: 'Alignment',
-    [CreationSteps.Details]: 'Details',
-};
+export enum CreationStepsDescriptions {
+    ClassSelection = "Every adventurer is a member of a class. A class broadly describes a character's vocation, special talents, and favored tactics.",
+    BackgroundSelection = 'Every character has a background that reflects their life before becoming an adventurer. Choose a background that fits your character concept.',
+    AbilityScores = "Assign your character's ability scores. These scores represent your character's innate talents and skills.",
+    Alignment = "Select your character's alignment. This defines your character's moral and ethical outlook.",
+    Details = 'Provide additional details about your character, such as their appearance, personality traits, and backstory.',
+    Overview = 'Review your character to ensure all details are correct and complete.',
+    Species = 'Select your character’s species, which determines their physical traits and abilities.',
+    Background = 'Select your character’s background, which provides additional skills and proficiencies.',
+    Languages = 'Choose the languages your character can speak, read, and write.',
+    Equipment = 'Select the equipment your character will start with, including weapons, armor, and other gear.',
+    Spells = 'If your character can cast spells, select the spells they know or have prepared.',
+    Feats = 'Choose any feats your character has, which provide special abilities or enhancements.',
+}
 
-export const CreationStepsDescriptions = {
-    [CreationSteps.ClassSelection]: 'Choose your character\'s class.',
-    [CreationSteps.RaceSelection]: 'Select your character\'s race.',
-    [CreationSteps.OriginSelection]: 'Choose your character\'s origin.',
-    [CreationSteps.AbilityScores]: 'Assign your character\'s ability scores.',
-    [CreationSteps.Alignment]: 'Select your character\'s alignment.',
-    [CreationSteps.Details]: 'Provide additional details about your character.',
-};
+export enum BackgroundSteps {
+    Race = 'Select Your Race',
+    Background = 'Select Your Character Background',
+    Languages = 'Select Your Languages',
+}
 
-export const LinkPreNote = 'For more information, visit:';
+export const LinkPreNote = 'Read more about this step:';

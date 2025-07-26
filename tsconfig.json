@@ -23,7 +23,10 @@
       "@features/*": ["app/features/*"],
       "@assets/*": ["assets/*"],
       "@environments/*": ["environments/*"],
-      "@data/*": ["app/features/data/*"]
+      "@data/*": ["app/features/data/*"],
+      "@dictionaries/*": ["app/shared/dictionaries/*"],
+      "@character-creator/*": ["app/features/character-creator/*"],
+      "@character-viewer/*": ["app/features/character-viewer/*"],
     },
   },
   "angularCompilerOptions": {

@@ -2,7 +2,6 @@ import { Feat, FeatureType } from "@shared/dictionaries/feat.dictionary";
 import { FeatModel } from "@shared/models/feat.model";
 
 export const FEATS: FeatModel[] = [
-  // Origin Feats
   {
     name: Feat.Alert,
     description: `Initiative Proficiency. When you roll initiative, you can add your proficiency bonus to the roll.
@@ -28,8 +27,6 @@ Repeatable. You can take this feat more than once, but each time you must choose
 Repeatable. You can take this feat more than once.`,
     featureType: FeatureType.General
   },
-
-  // General Feats
   {
     name: Feat.AbilityScoreImprovement,
     description: `Increase one ability score of your choice by 2, or increase two ability scores of your choice by 1. You can’t increase an ability score above 20.
@@ -45,8 +42,6 @@ Attack Advantage. You have advantage on attack rolls against creatures you’ve 
 Fast Wrestler. You don’t spend extra movement to move a Grappled creature if it’s your size or smaller.`,
     featureType: FeatureType.General
   },
-
-  // Fighting Style Feats
   {
     name: Feat.Archery,
     description: `Prerequisite: Fighting Style feature
@@ -72,7 +67,6 @@ When you make the extra attack granted by two-weapon fighting, you can add your 
     featureType: FeatureType.Weapon
   },
 
-  // Epic Boon Feats
   {
     name: Feat.BoonOfCombatProwess,
     description: `Prerequisite: Level 19+
@@ -95,7 +89,7 @@ Improve Fate. When you or a creature within 60 feet succeeds or fails a D20 t
     featureType: FeatureType.General
   },
   {
-    name: Feat.BoonOfIrresistibleOffense,
+    name: Feat.BoonOfIrresistableOffense,
     description: `Prerequisite: Level 19+
 Ability Score Increase. Increase your Strength or Dexterity by 1, to a maximum of 30.
 Overcome Defenses. Your bludgeoning, piercing, and slashing damage ignore resistance.

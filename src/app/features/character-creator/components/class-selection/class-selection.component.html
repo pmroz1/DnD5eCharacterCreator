@@ -1,13 +1,19 @@
-<p-card [header]="CreationStepsTitles[CreationSteps.ClassSelection]" class="mb-4">
-    <p class="m-0">
-        {{ CreationStepsDescriptions[CreationSteps.ClassSelection] }}
-        <br />
-        {{ LinkPreNote }}
-        <br />
-        <a [href]="TipsLookup.Classes" target="_blank" rel="noopener noreferrer" class="text-blue-200 hover:underline">
-            {{ TipsLookup.Classes }}</a
-        >
-    </p>
+<p-card [header]="" class="mb-4" >
+    <p-fieldset legend="{{ CreationSteps.ClassSelection }}" class="mb-4" [toggleable]="true">
+        <p class="m-0">
+            {{ CreationStepsDescriptions.ClassSelection }}
+            <br />
+            {{ LinkPreNote }}<br />
+            <a
+                [href]="TipsLookup.Classes"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-200 hover:underline"
+            >
+                {{ TipsLookup.Classes }}</a
+            >
+        </p>
+    </p-fieldset>
 
-    <app-carousel [items]="carouselItems"></app-carousel>
+    <app-carousel [items]="carouselItems" [maxImageHeight]="'h-100'"></app-carousel>
 </p-card>

@@ -1,4 +1,4 @@
-export const OriginDictionary = {
+export const BackgroundDictionary = {
     Artisan: 'Artisan',
     Criminal: 'Criminal',
     Entertainer: 'Entertainer',

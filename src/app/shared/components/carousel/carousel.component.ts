@@ -31,6 +31,8 @@ import { CarouselResponsiveOptions } from './responsive-options.data';
                             [cardData]="item"
                             (cardClick)="onCardClicked($event)"
                             [isClicked]="clickedItem()?.title === item.title"
+                            [cardClass]="'itemClass'"
+                            [maxImageHeight]="maxImageHeight()"
                         ></app-image-card>
                     </div>
                 </ng-template>
@@ -51,6 +53,7 @@ export class CarouselComponent {
     readonly itemClass = input<string>('');
     readonly numVisible = input<number>(9);
     readonly responsiveOptions = CarouselResponsiveOptions;
+    readonly maxImageHeight = input<string>('');
 
     clickedItem = signal<ImageCardData | null>(null);
 
