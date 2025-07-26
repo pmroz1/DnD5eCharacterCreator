@@ -15,4 +15,10 @@ export const CreationStepsDescriptions = {
     [CreationSteps.Details]: 'Provide additional details about your character.',
 };
 
+export enum BackgroundSteps{
+    Race = 'Select Your Race',
+    Background = 'Select Your Character Background',
+    Languages = 'Select Your Languages',
+}
+
 export const LinkPreNote = 'For more information, visit:';
