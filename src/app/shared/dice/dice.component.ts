@@ -20,7 +20,7 @@ import { trigger, transition, style, animate, state, AnimationEvent } from '@ang
                     <p-overlaybadge value="D{{ dice }}" class="mr-20">
                         <div
                             class="w-15 h-15 rounded-lg flex items-center justify-center text-white group cursor-pointer transition-transform"
-                            [class]="dice === 20 ? 'bg-yellow-500' : 'bg-blue-500'"
+                            [class]="getDiceColor(rollResults()[idx], dice)"
                             [class.animate-spin]="isRolling()"
                             (click)="rollDice()"
                             [@rollDice]="isRolling() ? 'rolling' : 'idle'"
@@ -153,5 +153,16 @@ export class DiceComponent {
     clearRolls() {
         this.selectedDices().length = 0;
         this.rollResults().length = 0;
+    }
+
+    getDiceColor(diceValue: number  , dice: number): string {
+        switch (diceValue) {
+            case 20:
+                return dice === 20 ? 'bg-yellow-500' : 'bg-blue-500';
+            case 1:
+                return dice === 20 ? 'bg-red-500' : 'bg-blue-500';
+            default:
+                return 'bg-blue-500';
+        }
     }
 }
