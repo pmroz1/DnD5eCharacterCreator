@@ -69,12 +69,12 @@ import { trigger, transition, style, animate, state, AnimationEvent } from '@ang
                     @if (rollResults().length > 0) {
                     <div class="flex flex-wrap gap-2 mt-2">
                         @for(result of rollResults(); track idx; let idx = $index) {
-                        <span class="px-2 py-1 bg-white rounded font-bold text-gray-800">{{ result }}</span>
+                        <span class="px-2 py-1 bg-white rounded font-bold text-gray-800">{{
+                            result
+                        }}</span>
                         }
                     </div>
-                    <p class="mt-2 font-bold">
-                        Total: {{ totalRollResult }}
-                    </p>
+                    <p class="mt-2 font-bold">Total: {{ totalRollResult }}</p>
                     } @else {
                     <p>No rolls yet</p>
                     }
@@ -87,7 +87,9 @@ import { trigger, transition, style, animate, state, AnimationEvent } from '@ang
                     @if (recentRolls().length > 0) {
                     <div class="flex flex-wrap gap-1 mt-2 max-h-20 overflow-y-auto">
                         @for(roll of recentRolls(); track idx; let idx = $index) {
-                        <span class="px-1 py-0.5 bg-white rounded text-sm text-gray-800">{{ roll }}</span>
+                        <span class="px-1 py-0.5 bg-white rounded text-sm text-gray-800">{{
+                            roll
+                        }}</span>
                         }
                     </div>
                     } @else {
@@ -112,7 +114,7 @@ export class DiceComponent {
     availableDices = input<number[]>([3, 4, 6, 8, 10, 12, 20, 100]);
     selectedDices = input<number[]>([]);
     rollResults = input<number[]>([]);
-    recentRolls = input<number[]>([]);
+    recentRolls = signal<number[]>([]);
     enableDuplicates = input<boolean>(true);
     maxDiceCount = input<number>(7);
     isRolling = signal<boolean>(false);
@@ -145,7 +147,12 @@ export class DiceComponent {
             );
             this.rollResults().length = 0;
             this.rollResults().push(...results);
-            this.recentRolls().push(...results.slice(-3));
+
+            this.recentRolls().push(...results);
+            if (this.recentRolls().length > 10) {
+                this.recentRolls().splice(0, this.recentRolls().length - 10);
+            }
+
             this.isRolling.set(false);
         }, 1000);
     }
@@ -155,7 +162,7 @@ export class DiceComponent {
         this.rollResults().length = 0;
     }
 
-    getDiceColor(diceValue: number  , dice: number): string {
+    getDiceColor(diceValue: number, dice: number): string {
         switch (diceValue) {
             case 20:
                 return dice === 20 ? 'bg-yellow-500' : 'bg-blue-500';
