@@ -16,17 +16,17 @@ import { CarouselResponsiveOptions } from './responsive-options.data';
     imports: [CarouselModule, ImageCardComponent],
     template: `
         @if(items().length>0){
-        <div class="w-full">
+        <div class="w-full h-auto ">
             <p-carousel
                 [value]="items()"
                 [numVisible]="numVisible()"
                 [responsiveOptions]="responsiveOptions"
                 [numScroll]="3"
                 [circular]="true"
-                class="mt-5 mb-5"
+                class="mt-10 mb-10"
             >
-                <ng-template let-item #item>
-                    <div class="p-2">
+                <ng-template let-item #item class="">
+                    <div class="p-3">
                         <app-image-card
                             [cardData]="item"
                             (cardClick)="onCardClicked($event)"

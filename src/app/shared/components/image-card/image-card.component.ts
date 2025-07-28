@@ -8,12 +8,23 @@ import { ImageCardData } from './models/image-card.model';
     imports: [CommonModule, RippleModule],
     template: `
         <div
-            class="group cursor-pointer backdrop-blur-sm bg-white/10 rounded-xl border border-white/20 shadow-xl h-1/2 w-full flex flex-col overflow-hidden"
+            [class]="getCardClasses()"
+            class="group cursor-pointer backdrop-blur-sm rounded-xl shadow-xl h-120 w-full flex flex-col overflow-hidden transition-all duration-300 transform"
+            [ngClass]="{
+                'bg-white/10 border border-white/20 hover:bg-white/15 hover:border-white/30 hover:shadow-2xl hover:scale-104': !isClicked,
+                'bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 border-2 border-blue-400/60 shadow-2xl shadow-blue-400/20 scale-104': isClicked
+            }"
             pRipple
             (click)="onCardClick()"
-            
         >
-            <div class="relative overflow-hidden h-120 flex-shrink-0">
+            <div class="relative overflow-hidden h-100 flex-shrink-0">
+                <div 
+                    class="absolute inset-0 transition-all duration-300"
+                    [ngClass]="{
+                        'bg-gradient-to-t from-black/20 to-transparent': !isClicked,
+                        'bg-gradient-to-t from-blue-600/30 via-purple-600/20 to-pink-600/10': isClicked
+                    }"
+                ></div>
                 <img
                     [src]="cardData().imageUrl"
                     [alt]="cardData().title"
@@ -22,18 +33,58 @@ import { ImageCardData } from './models/image-card.model';
                     loading="lazy"
                 />
             </div>
-            <div class="flex-1 p-4 flex flex-col">
-                <h3 class="text-lg font-bold text-white mb-2 line-clamp-2">
+            <div class="flex-1 p-4 flex flex-col relative">
+                <div 
+                    class="absolute inset-0 transition-all duration-300 rounded-b-xl"
+                    [ngClass]="{
+                        'bg-gradient-to-t from-transparent to-transparent': !isClicked,
+                        'bg-gradient-to-t from-blue-500/10 via-purple-500/5 to-transparent': isClicked
+                    }"
+                ></div>
+                <h3 
+                    class="text-lg font-bold mb-2 line-clamp-2 relative z-10 transition-colors duration-300"
+                    [ngClass]="{
+                        'text-white': !isClicked,
+                        'text-blue-100 drop-shadow-lg': isClicked
+                    }"
+                >
                     {{ cardData().title }}
                 </h3>
-                <p class="text-sm text-white/80 leading-relaxed flex-1 line-clamp-3">
+                <p 
+                    class="text-sm leading-relaxed flex-1 line-clamp-3 relative z-10 transition-colors duration-300"
+                    [ngClass]="{
+                        'text-white/80': !isClicked,
+                        'text-blue-200/90': isClicked
+                    }"
+                >
                     {{ cardData().description }}
                 </p>
             </div>
         </div>
     `,
     styles: `
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
 
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.5); }
+        }
+
+        .selected-card {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -55,6 +106,14 @@ export class ImageCardComponent {
 
     @Output() cardClick = new EventEmitter<ImageCardData | null>();
     @Input() isClicked: boolean = false;
+
+    getCardClasses(): string {
+        const baseClasses = this.cardClass();
+        const heightClass = this.maxCardHeight();
+        const widthClass = this.maxCardWidth();
+        const selectedClass = this.isClicked ? 'selected-card' : '';
+        return `${baseClasses} ${heightClass} ${widthClass} ${selectedClass}`.trim();
+    }
 
     getImageClasses(): string {
         const baseClasses = 'w-full h-full object-cover';
