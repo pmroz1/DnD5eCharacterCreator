@@ -16,17 +16,17 @@ import { UpperCasePipe } from '@angular/common';
                 class="relative border-b border-gray-200 last:border-b-0"
             >
                 <p-accordion-header
-                    class="bg-gradient-to-r from-slate-50 to-gray-100 hover:from-slate-100 hover:to-gray-150 transition-all duration-300"
+                    class="bg-gradient-to-r from-slate-50 to-gray-100 hover:from-slate-100 hover:to-gray-150 transition-all duration-300 "
                 >
-                    <div class="flex items-center gap-3 w-full py-2">
-                        <div class="w-12 h-12 rounded-full overflow-hidden shadow-md">
+                    <div class="flex items-center gap-3 w-full py-2 ">
+                        <div class="w-12 h-12 rounded-full overflow-hidden shadow-md ">
                             <img
                                 [src]="item.imageUrl"
                                 [alt]="item.name"
-                                class="w-full h-full object-cover"
+                                class="w-full h-full object-cover "
                             />
                         </div>
-                        <span class="text-lg font-semibold text-gray-800">{{ item.name }}</span>
+                        <span class="text-lg font-semibold ">{{ item.name }}</span>
                     </div>
                 </p-accordion-header>
                 <p-accordion-content class="relative overflow-hidden rounded-b-xl">
@@ -77,14 +77,6 @@ import { UpperCasePipe } from '@angular/common';
                                     } }
                                 </div>
                             </div>
-                        </div>
-
-                        <div
-                            class="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full p-2"
-                        >
-                            <i
-                                class="pi pi-expand text-white opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
-                            ></i>
                         </div>
                     </div>
                 </p-accordion-content>
