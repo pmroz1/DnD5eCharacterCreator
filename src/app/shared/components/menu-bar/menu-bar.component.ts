@@ -17,6 +17,10 @@ import { DiceComponent } from '@shared/dice/dice.component';
                     maskStyleClass="backdrop-blur-sm"
                     [(visible)]="visible"
                     styleClass="!border-0 !bg-transparent"
+                    [modal]="true"
+                    [closeOnEscape]="true"
+                    [dismissableMask]="true"
+                    
                 >
                     <ng-template #headless><app-dice></app-dice></ng-template>
                 </p-dialog>

@@ -3,7 +3,7 @@ import { CardModule } from 'primeng/card';
 import { Button } from 'primeng/button';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
 
-import { trigger, transition, style, animate, state, AnimationEvent } from '@angular/animations';
+import { trigger, transition, style, animate, state } from '@angular/animations';
 
 @Component({
     selector: 'app-dice',
