@@ -6,7 +6,7 @@ import { ImageAccordionItem } from './models/image-accordion.model';
     selector: 'app-image-accordion',
     imports: [AccordionModule],
     template: `<div class="flex flex-col gap-2">
-        <p-accordion>
+        <p-accordion [value]="'0'" class="w-full h-auto">
             @if((items() ?? []).length > 0) { @for(item of (items() ?? []); track item.id; let idx =
             $index) {
             <p-accordion-panel value="{{ idx }}" class="relative">
