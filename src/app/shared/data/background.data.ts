@@ -3,6 +3,7 @@ import { Ability } from '@shared/dictionaries/ability.dictionary';
 import { BackgroundDictionary } from '@shared/dictionaries/background.dictionary';
 import { Skills } from '@shared/dictionaries/skills.dictionary';
 import { Feat } from '@shared/dictionaries/feat.dictionary';
+import { ToolProficiencies } from '@shared/dictionaries/tool-proficiences.dictionary';
 
 export const BACKGROUNDS: BackgroundModel[] = [
     {
@@ -11,7 +12,7 @@ export const BACKGROUNDS: BackgroundModel[] = [
         abilities: [Ability.Intelligence, Ability.Wisdom, Ability.Charisma],
         skills: [Skills.Insight, Skills.Religion],
         feats: [Feat.MagicInitiate,],
-        toolProficiencies: [],
+        toolProficiencies: [ToolProficiencies.CalligraphersSupplies],
         equipment: {
             guaranteed: [],
             choices: [],

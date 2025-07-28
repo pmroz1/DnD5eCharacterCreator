@@ -5,6 +5,7 @@ import { BaseRecord } from '@shared/models/base.model';
 import { RACES } from '@shared/data/races.data';
 import { BACKGROUNDS } from '@shared/data/background.data';
 import { ImageAccordionItem } from '@shared/components/image-accordion/models/image-accordion.model';
+import { BackgroundModel } from '@shared/models/origin.model';
 
 @Injectable({
     providedIn: 'root',
@@ -18,12 +19,37 @@ export class CharacterDataRepositoryService {
         };
     }
 
-    convertToImageAccordionItem(record: BaseRecord): ImageAccordionItem {
+    convertBackgroundToImageAccordionItem(record: BackgroundModel): ImageAccordionItem {
+        const feats =
+            record.feats?.map((feat) => ({
+                value: feat,
+                icon: `pi pi-sparkles`,
+            })) || [];
+
+        const toolProficiencies =
+            record.toolProficiencies?.map((tool) => ({
+                value: tool,
+                icon: `pi pi-hammer`,
+            })) || [];
+
+        const skills =
+            record.skills?.map((skill) => ({
+                value: skill,
+                icon: `pi pi-address-book`,
+            })) || [];
+
+        const abilities =
+            record.abilities?.map((ability) => ({
+                value: ability,
+                icon: `pi pi-star`,
+            })) || [];
+
         return {
             id: record.id,
             name: record.name,
             description: record.description,
             imageUrl: record.imageUrl,
+            chips: [...feats, ...toolProficiencies, ...skills, ...abilities],
         };
     }
 
@@ -36,6 +62,6 @@ export class CharacterDataRepositoryService {
     }
 
     getBackgroundAccordionItems(): ImageAccordionItem[] {
-        return BACKGROUNDS.map((bg) => (this.convertToImageAccordionItem(bg)));
+        return BACKGROUNDS.map((bg) => this.convertBackgroundToImageAccordionItem(bg));
     }
 }
