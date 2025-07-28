@@ -2,6 +2,8 @@ import { BackgroundModel } from '@shared/models/origin.model';
 import { Ability } from '@shared/dictionaries/ability.dictionary';
 import { BackgroundDictionary } from '@shared/dictionaries/background.dictionary';
 import { Skills } from '@shared/dictionaries/skills.dictionary';
+import { Feat } from '@shared/dictionaries/feat.dictionary';
+import { ToolProficiencies } from '@shared/dictionaries/tool-proficiences.dictionary';
 
 export const BACKGROUNDS: BackgroundModel[] = [
     {
@@ -9,14 +11,18 @@ export const BACKGROUNDS: BackgroundModel[] = [
         name: BackgroundDictionary.Acolyte,
         abilities: [Ability.Intelligence, Ability.Wisdom, Ability.Charisma],
         skills: [Skills.Insight, Skills.Religion],
-        feats: [],
-        toolProficiencies: [],
+        feats: [Feat.MagicInitiate,],
+        toolProficiencies: [ToolProficiencies.CalligraphersSupplies],
         equipment: {
             guaranteed: [],
             choices: [],
         },
         imageUrl: 'assets/images/origins/acolyte.png',
-        description: 'You have spent your life in the service of a temple to a specific god.',
+        description: `You devoted your life to the service in a temple, either nestled in a bustling city or secluded in a sacred grove.
+             There you performed rituals, offered guidance to the faithful, and learned the tenets of your faith.
+             You served under a priest and studied the teachings of your deity, gaining insight into the spiritual world.
+             Thanks to your priest instruction, you learned the ways of your faith and the rituals that bind it.
+            `,
     },
     {
         id: BackgroundDictionary.Artisan,

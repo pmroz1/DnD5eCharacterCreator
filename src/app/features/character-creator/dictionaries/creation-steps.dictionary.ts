@@ -34,9 +34,10 @@ export enum CreationStepsDescriptions {
 }
 
 export enum BackgroundSteps {
-    Race = 'Select Your Race',
-    Background = 'Select Your Character Background',
-    Languages = 'Select Your Languages',
+    Race = 'Choose Your Race',
+    Background = 'Choose Your Character Background',
+    Languages = 'Choose Your Languages',
+    PastAndPresent = 'Imagine Your Past and Present',
 }
 
 export const LinkPreNote = 'Read more about this step:';
