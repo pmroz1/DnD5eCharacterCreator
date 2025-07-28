@@ -11,7 +11,7 @@ import { ImageCardData } from './models/image-card.model';
             class="group cursor-pointer backdrop-blur-sm bg-white/10 rounded-xl border border-white/20 shadow-xl h-1/2 w-full flex flex-col overflow-hidden"
             pRipple
             (click)="onCardClick()"
-            [ngClass]="isClicked ? 'border-2 border-lime-600' : 'border-2 border-transparent'" 
+            
         >
             <div class="relative overflow-hidden h-120 flex-shrink-0">
                 <img

@@ -18,6 +18,6 @@ export const enum RareLanguages {
     Infernal = 'Infernal',
     Primordial = 'Primordial', // includes Auran, Aquan, Ignan, Terran
     Sylvan = 'Sylvan',
-    ThievesCant = 'Thieves\' Cant',
+    ThievesCant = "Thieves' Cant",
     Undercommon = 'The Underdark',
 }
