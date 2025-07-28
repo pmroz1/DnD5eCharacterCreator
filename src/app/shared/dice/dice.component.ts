@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { AccordionModule } from 'primeng/accordion';
+import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { Button } from 'primeng/button';
-import { BadgeModule } from 'primeng/badge';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
+
+import { trigger, transition, style, animate, state, AnimationEvent } from '@angular/animations';
 
 @Component({
     selector: 'app-dice',
@@ -19,15 +19,19 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
                     @for(dice of selectedDices(); track idx; let idx = $index) {
                     <p-overlaybadge value="D{{ dice }}" class="mr-20">
                         <div
-                            class="w-15 h-15 rounded-lg flex items-center justify-center text-white group cursor-pointer"
-                            severity="secondary"
+                            class="w-15 h-15 rounded-lg flex items-center justify-center text-white group cursor-pointer transition-transform"
                             [class]="dice === 20 ? 'bg-yellow-500' : 'bg-blue-500'"
+                            [class.animate-spin]="isRolling()"
                             (click)="rollDice()"
+                            [@rollDice]="isRolling() ? 'rolling' : 'idle'"
                         >
+                            @if (isRolling()) { ? } @else if (rollResults()[idx]) {
+                            {{ rollResults()[idx] }}
+                            } @else {
                             {{ dice }}
+                            }
                         </div>
                     </p-overlaybadge>
-
                     }
                 </div>
                 <div class="flex flex-row items-center justify-center mt-4">
@@ -35,18 +39,25 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
                         class="ml-auto mr-2"
                         label="Roll All"
                         severity="primary"
+                        [disabled]="selectedDices().length === 0 || isRolling()"
                         (click)="rollDice()"
                     ></p-button>
                     <p-button
                         class="mr-auto ml-2"
                         label="Clear"
                         severity="secondary"
+                        [disabled]="isRolling()"
                         (click)="clearRolls()"
                     ></p-button>
                 </div>
                 <div class="flex flex-row items-center justify-center mt-4">
                     @for(dice of availableDices(); track idx; let idx = $index) {
-                    <p-button class="mr-2" severity="secondary" (click)="addDiceToPool(dice)">
+                    <p-button
+                        class="mr-2"
+                        severity="secondary"
+                        [disabled]="isRolling()"
+                        (click)="addDiceToPool(dice)"
+                    >
                         <p class="text-green-300">D{{ dice }}</p>
                     </p-button>
                     }
@@ -55,20 +66,47 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
                     class="flex flex-col items-center justify-center mt-4 border-t-2 rounded border-gray-300 pt-4 h-50 ml-50 mr-50 bg-blue-300 w-300"
                 >
                     <p-header>Roll Results</p-header>
-                    <p>Here are your roll results:</p>
+                    @if (rollResults().length > 0) {
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        @for(result of rollResults(); track idx; let idx = $index) {
+                        <span class="px-2 py-1 bg-white rounded font-bold text-gray-800">{{ result }}</span>
+                        }
+                    </div>
+                    <p class="mt-2 font-bold">
+                        Total: {{ totalRollResult }}
+                    </p>
+                    } @else {
+                    <p>No rolls yet</p>
+                    }
                 </div>
 
                 <div
                     class="flex flex-col items-center justify-center mt-4 border-t-2 rounded border-gray-300 pt-4 h-50 ml-50 mr-50 bg-red-300 w-300"
                 >
                     <p-header>Recent Rolls</p-header>
-                    <p>Here are your recent rolls:</p>
+                    @if (recentRolls().length > 0) {
+                    <div class="flex flex-wrap gap-1 mt-2 max-h-20 overflow-y-auto">
+                        @for(roll of recentRolls(); track idx; let idx = $index) {
+                        <span class="px-1 py-0.5 bg-white rounded text-sm text-gray-800">{{ roll }}</span>
+                        }
+                    </div>
+                    } @else {
+                    <p>No recent rolls</p>
+                    }
                 </div>
             </div>
         </p-card>
     </div>`,
     styles: ``,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    animations: [
+        trigger('rollDice', [
+            state('idle', style({ transform: 'scale(1) rotate(0deg)' })),
+            state('rolling', style({ transform: 'scale(1.1) rotate(360deg)' })),
+            transition('idle => rolling', [animate('600ms ease-in-out')]),
+            transition('rolling => idle', [animate('200ms ease-out')]),
+        ]),
+    ],
 })
 export class DiceComponent {
     availableDices = input<number[]>([3, 4, 6, 8, 10, 12, 20, 100]);
@@ -77,6 +115,11 @@ export class DiceComponent {
     recentRolls = input<number[]>([]);
     enableDuplicates = input<boolean>(true);
     maxDiceCount = input<number>(7);
+    isRolling = signal<boolean>(false);
+
+    get totalRollResult(): number {
+        return this.rollResults().reduce((a, b) => a + b, 0);
+    }
 
     addDiceToPool(dice: number) {
         if (
@@ -90,14 +133,25 @@ export class DiceComponent {
     }
 
     rollDice() {
-        throw new Error('Method not implemented.');
-    }
+        if (this.selectedDices().length === 0) {
+            console.warn('No dice selected to roll');
+            return;
+        }
+        this.isRolling.set(true);
 
-    rollAllDices() {
-        throw new Error('Method not implemented.');
+        setTimeout(() => {
+            const results = this.selectedDices().map(
+                (dice) => Math.floor(Math.random() * dice) + 1
+            );
+            this.rollResults().length = 0;
+            this.rollResults().push(...results);
+            this.recentRolls().push(...results.slice(-3));
+            this.isRolling.set(false);
+        }, 1000);
     }
 
     clearRolls() {
         this.selectedDices().length = 0;
+        this.rollResults().length = 0;
     }
 }
