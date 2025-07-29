@@ -50,11 +50,10 @@
         </p-step-panel>
         <p-step-panel [value]="3">
             <ng-template #content let-activateCallback="activateCallback">
-                <div class="flex flex-col h-48">
-                    <div
-                        class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
-                    ></div>
-                </div>
+               <div class="flex flex-col">
+                      <app-determine-ability-scores></app-determine-ability-scores>
+
+               </div>
                 <p-button
                     label="Previous"
                     icon="pi pi-arrow-left"
