@@ -23,7 +23,6 @@ import { DiceSet } from './models/dice-set.model';
             <app-ability-score-dices
                 [diceSets]="diceSets()"
                 class="mt-6"
-                (selectedRoll)="onSelectedRoll($event)"
             ></app-ability-score-dices>
         </p-card>
     </div>`,
@@ -56,9 +55,5 @@ export class DetermineAbilityScoresComponent {
         }
         rolls.sort((a, b) => b - a);
         return rolls;
-    }
-
-    onSelectedRoll($event: DiceSet) {
-        console.log('Selected Roll:', $event);
     }
 }
