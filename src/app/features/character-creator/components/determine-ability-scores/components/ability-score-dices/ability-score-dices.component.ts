@@ -3,7 +3,6 @@ import { DiceSet } from '../../models/dice-set.model';
 
 @Component({
     selector: 'app-ability-score-dices',
-    imports: [],
     template: `
         <div>
             <div class="h-full w-full grid grid-cols-3 gap-4 p-4">
