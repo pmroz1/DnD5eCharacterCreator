@@ -14,10 +14,13 @@ import { DiceSet } from '../../models/dice-set.model';
                     <div class="text-xl font-semibold">Dice Set {{ diceSet.id }}</div>
                     <div class="flex space-x-2">
                         @for (roll of diceSet.rolls; track $index; let i = $index) {
-                            <div class="text-center text-2xl font-bold">
-                                <p class="{{ i === 3 ? 'text-red-500' : '' }}">{{ roll }}</p>
+                        <div class="text-center text-lg font-bold">
+                            <p class="{{ i === 3 ? 'text-red-500' : '' }}">{{ roll }}</p>
                         </div>
                         }
+                    </div>
+                    <div class="flex text-3xl font-bold text-white pt-2">
+                        <p>{{ getRollTotal(diceSet.rolls) }}</p>
                     </div>
                 </div>
                 }
@@ -28,4 +31,9 @@ import { DiceSet } from '../../models/dice-set.model';
 })
 export class AbilityScoreDicesComponent {
     diceSets = input<DiceSet[]>();
+
+    getRollTotal(rolls: number[]) {
+        rolls.pop();
+        return rolls.reduce((acc, roll) => acc + roll);
+    }
 }

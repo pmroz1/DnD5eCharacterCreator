@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { Card } from 'primeng/card';
 import { AbilityScoreDicesComponent } from './components/ability-score-dices/ability-score-dices.component';
 import { Button } from 'primeng/button';
+import { DiceSet } from './models/dice-set.model';
 
 @Component({
     selector: 'app-determine-ability-scores',
@@ -19,7 +20,11 @@ import { Button } from 'primeng/button';
                 <p class="text-xl">3) Assign scores to abilities as desired</p>
                 <p-button class="pt-5 pb-3" (click)="rollPoints()">Roll points</p-button>
             </div>
-            <app-ability-score-dices [diceSets]="diceSets()" class="mt-6"></app-ability-score-dices>
+            <app-ability-score-dices
+                [diceSets]="diceSets()"
+                class="mt-6"
+                (selectedRoll)="onSelectedRoll($event)"
+            ></app-ability-score-dices>
         </p-card>
     </div>`,
     styles: '',
@@ -27,12 +32,12 @@ import { Button } from 'primeng/button';
 })
 export class DetermineAbilityScoresComponent {
     diceSets = signal([
-        { id: 1, rolls: [6, 6, 6, 6] },
-        { id: 2, rolls: [6, 6, 6, 6] },
-        { id: 3, rolls: [6, 6, 6, 6] },
-        { id: 4, rolls: [6, 6, 6, 6] },
-        { id: 5, rolls: [6, 6, 6, 6] },
-        { id: 6, rolls: [6, 6, 6, 6] },
+        { id: 1, rolls: [-1, -1, -1, -1] },
+        { id: 2, rolls: [-1, -1, -1, -1] },
+        { id: 3, rolls: [-1, -1, -1, -1] },
+        { id: 4, rolls: [-1, -1, -1, -1] },
+        { id: 5, rolls: [-1, -1, -1, -1] },
+        { id: 6, rolls: [-1, -1, -1, -1] },
     ]);
 
     rollPoints() {
@@ -51,5 +56,9 @@ export class DetermineAbilityScoresComponent {
         }
         rolls.sort((a, b) => b - a);
         return rolls;
+    }
+
+    onSelectedRoll($event: DiceSet) {
+        console.log('Selected Roll:', $event);
     }
 }
