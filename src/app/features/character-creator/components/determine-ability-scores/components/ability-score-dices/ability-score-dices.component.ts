@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { DiceSet } from '../../models/dice-set.model';
 
 @Component({
@@ -10,6 +10,7 @@ import { DiceSet } from '../../models/dice-set.model';
                 @for (diceSet of diceSets(); track $index) {
                 <div
                     class="flex flex-col justify-center items-center p-ripple group cursor-pointer backdrop-blur-sm rounded-xl shadow-xl w-full flex flex-col overflow-hidden transform itemClass h-auto bg-white/10 border border-white/20"
+                    (click)="selectRoll(diceSet)"
                 >
                     <div class="text-xl font-semibold">Dice Set {{ diceSet.id }}</div>
                     <div class="flex space-x-2">
@@ -31,9 +32,15 @@ import { DiceSet } from '../../models/dice-set.model';
 })
 export class AbilityScoreDicesComponent {
     diceSets = input<DiceSet[]>();
+    selectedRollEvent = output<number>();
 
     getRollTotal(rolls: number[]) {
-        rolls.pop();
-        return rolls.reduce((acc, roll) => acc + roll);
+        const sortedRolls = [...rolls].slice(0, 3);
+        return sortedRolls.reduce((acc, sortedRoll) => acc + sortedRoll);
+    }
+
+    selectRoll(diceSet: DiceSet) {
+        const set = diceSet.id;
+        this.selectedRollEvent.emit(set);
     }
 }

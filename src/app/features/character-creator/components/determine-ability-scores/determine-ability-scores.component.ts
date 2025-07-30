@@ -23,6 +23,7 @@ import { DiceSet } from './models/dice-set.model';
             <app-ability-score-dices
                 [diceSets]="diceSets()"
                 class="mt-6"
+                (selectedRollEvent)="selectedRoll($event)"
             ></app-ability-score-dices>
         </p-card>
     </div>`,
@@ -37,7 +38,7 @@ export class DetermineAbilityScoresComponent {
         { id: 4, rolls: [-1, -1, -1, -1] },
         { id: 5, rolls: [-1, -1, -1, -1] },
         { id: 6, rolls: [-1, -1, -1, -1] },
-    ]);
+    ] as DiceSet[]);
 
     rollPoints() {
         this.diceSets.update((set) => {
@@ -55,5 +56,10 @@ export class DetermineAbilityScoresComponent {
         }
         rolls.sort((a, b) => b - a);
         return rolls;
+    }
+
+    selectedRoll(diceSetId: number) {
+        console.log(`Selected roll for dice set ID: ${diceSetId}`);
+        // Here you can handle the selected roll, e.g., assign it to an ability score
     }
 }
