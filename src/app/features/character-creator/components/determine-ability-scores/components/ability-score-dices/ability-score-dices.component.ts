@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { DiceSet } from '../../models/dice-set.model';
 
 @Component({
     selector: 'app-ability-score-dices',
@@ -10,11 +11,11 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
                 <div
                     class="flex flex-col justify-center items-center p-ripple group cursor-pointer backdrop-blur-sm rounded-xl shadow-xl w-full flex flex-col overflow-hidden transform itemClass h-auto bg-white/10 border border-white/20"
                 >
-                    <div class="text-lg font-semibold">Dice Set {{ diceSet.id }}</div>
+                    <div class="text-xl font-semibold">Dice Set {{ diceSet.id }}</div>
                     <div class="flex space-x-2">
-                        @for (roll of diceSet.rolls; track $index) {
-                        <div class="flex-1">
-                            <div class="text-center">{{ roll }}</div>
+                        @for (roll of diceSet.rolls; track $index; let i = $index) {
+                            <div class="text-center">
+                                <p class="{{ i === 3 ? 'text-red-500' : '' }}">{{ roll }}</p>
                         </div>
                         }
                     </div>
@@ -26,5 +27,5 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AbilityScoreDicesComponent {
-    diceSets = input<{ id: number; rolls: number[] }[]>();
+    diceSets = input<DiceSet[]>();
 }

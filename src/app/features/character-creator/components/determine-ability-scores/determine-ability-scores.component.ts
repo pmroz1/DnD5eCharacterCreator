@@ -50,7 +50,6 @@ export class DetermineAbilityScoresComponent {
             rolls.push(Math.floor(Math.random() * 6) + 1);
         }
         rolls.sort((a, b) => b - a);
-        rolls.pop();
         return rolls;
     }
 }
