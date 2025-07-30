@@ -12,7 +12,7 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
         <p-card class="w-350 h-auto ">
             <div class="flex flex-col items-center justify-center content-center">
                 <p class="font-bold text-5xl">D&D Dice Roll</p>
-                <p>Roll a dice or <strong>two</strong> to determine your fate!</p>
+                <p>Roll a dice or <strong>more</strong> to determine your fate!</p>
                 <div
                     class="flex flex-row items-center justify-center mt-4 border-2 border-dashed border-gray-300 rounded-lg p-4 h-50 w-300"
                 >
