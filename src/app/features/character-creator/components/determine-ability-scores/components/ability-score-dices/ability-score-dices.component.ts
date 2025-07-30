@@ -14,7 +14,7 @@ import { DiceSet } from '../../models/dice-set.model';
                     <div class="text-xl font-semibold">Dice Set {{ diceSet.id }}</div>
                     <div class="flex space-x-2">
                         @for (roll of diceSet.rolls; track $index; let i = $index) {
-                            <div class="text-center">
+                            <div class="text-center text-2xl font-bold">
                                 <p class="{{ i === 3 ? 'text-red-500' : '' }}">{{ roll }}</p>
                         </div>
                         }
