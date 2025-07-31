@@ -43,12 +43,12 @@ export class DetermineAbilityScoresComponent {
     ] as DiceSet[]);
 
     abilityPointsMap = signal<{ [key: string]: number }>({
-        strength: 0,
-        dexterity: 0,
-        constitution: 0,
-        intelligence: 0,
-        wisdom: 0,
-        charisma: 0,
+        STRENGTH: 10,
+        DEXTERITY: 10,
+        CONSTITUTION: 10,
+        INTELLIGENCE: 10,
+        WISDOM: 10,
+        CHARISMA: 10,
     });
 
     rollPoints() {
