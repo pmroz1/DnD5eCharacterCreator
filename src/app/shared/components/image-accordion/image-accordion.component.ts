@@ -40,7 +40,7 @@ import { CommonModule } from '@angular/common';
                         <span 
                             class="text-lg font-semibold transition-colors duration-300"
                             [ngClass]="{
-                                'text-gray-800': selectedItemId() !== item.id,
+                                'text-white-800': selectedItemId() !== item.id,
                                 'text-blue-800': selectedItemId() === item.id
                             }"
                         >{{ item.name }}</span>
