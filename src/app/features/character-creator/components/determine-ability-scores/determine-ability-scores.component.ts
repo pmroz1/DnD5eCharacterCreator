@@ -3,10 +3,11 @@ import { Card } from 'primeng/card';
 import { AbilityScoreDicesComponent } from './components/ability-score-dices/ability-score-dices.component';
 import { Button } from 'primeng/button';
 import { DiceSet } from './models/dice-set.model';
+import { AssignAbilityPointsComponent } from './components/assign-ability-points/assign-ability-points.component';
 
 @Component({
     selector: 'app-determine-ability-scores',
-    imports: [Card, AbilityScoreDicesComponent, Button],
+    imports: [Card, AbilityScoreDicesComponent, Button, AssignAbilityPointsComponent],
     template: `<div class="flex flex-col justify-center items-center w-full mx-auto mt-4">
         <p-card class="flex justify-center items-center w-full mx-auto mt-4">
             <div class="flex flex-col justify-center items-center">
@@ -25,6 +26,7 @@ import { DiceSet } from './models/dice-set.model';
                 class="mt-6"
                 (selectedRollEvent)="selectedRoll($event)"
             ></app-ability-score-dices>
+            <app-assign-ability-points class="mt-6" [abilityPointsMap]="abilityPointsMap()"></app-assign-ability-points>
         </p-card>
     </div>`,
     styles: '',
@@ -39,6 +41,15 @@ export class DetermineAbilityScoresComponent {
         { id: 5, rolls: [-1, -1, -1, -1] },
         { id: 6, rolls: [-1, -1, -1, -1] },
     ] as DiceSet[]);
+
+    abilityPointsMap = signal<{ [key: string]: number }>({
+        strength: 0,
+        dexterity: 0,
+        constitution: 0,
+        intelligence: 0,
+        wisdom: 0,
+        charisma: 0,
+    });
 
     rollPoints() {
         this.diceSets.update((set) => {
@@ -60,6 +71,5 @@ export class DetermineAbilityScoresComponent {
 
     selectedRoll(diceSetId: number) {
         console.log(`Selected roll for dice set ID: ${diceSetId}`);
-        // Here you can handle the selected roll, e.g., assign it to an ability score
     }
 }
