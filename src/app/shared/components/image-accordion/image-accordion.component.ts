@@ -40,7 +40,7 @@ import { CommonModule } from '@angular/common';
                         <span 
                             class="text-lg font-semibold transition-colors duration-300"
                             [ngClass]="{
-                                'text-gray-800': selectedItemId() !== item.id,
+                                'text-white-800': selectedItemId() !== item.id,
                                 'text-blue-800': selectedItemId() === item.id
                             }"
                         >{{ item.name }}</span>
@@ -70,10 +70,7 @@ import { CommonModule } from '@angular/common';
                         />
                         <div
                             class="absolute inset-0 transition-all duration-300"
-                            [ngClass]="{
-                                'bg-gradient-to-r from-black/80 via-black/50 to-black/20': selectedItemId() !== item.id,
-                                'bg-gradient-to-r from-blue-900/70 via-purple-800/50 to-pink-700/30': selectedItemId() === item.id
-                            }"
+
                         ></div>
                         <div 
                             class="absolute inset-0 transition-all duration-300"

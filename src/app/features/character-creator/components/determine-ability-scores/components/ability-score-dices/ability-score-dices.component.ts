@@ -27,8 +27,8 @@ import { DiceSet } from '../../models/dice-set.model';
                         </div>
                         }
                     </div>
-                    <div class="flex text-3xl font-bold text-white pt-2">
-                        <p>{{ getRollTotal(diceSet.rolls) }}</p>
+                    <div class="flex text-3xl font-bold text-white pt-2 mb-2">
+                        <p>{{ getRollTotal(diceSet.rolls) === -3 ? 'No Valid Rolls' : getRollTotal(diceSet.rolls) }}</p>
                     </div>
                 </div>
                 }
