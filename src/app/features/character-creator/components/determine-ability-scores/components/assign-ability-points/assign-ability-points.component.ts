@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, OnInit, output } from '@angular/core';
 import { AbilityAssignMap } from '../../models/ability-assign.map';
 import { ChartModule } from 'primeng/chart';
 @Component({
@@ -10,8 +10,9 @@ import { ChartModule } from 'primeng/chart';
             objectKeys(abilityPointsMap()); track map) {
             <div
                 class="flex justify-between items-center p-ripple 
-        backdrop-blur-sm rounded-xl shadow-xl w-1/2 overflow-hidden h-15 
-        transform itemClass bg-white/10 border border-white/20 mb-2 mt-2"
+                backdrop-blur-sm rounded-xl shadow-xl w-1/2 overflow-hidden h-15 
+                transform itemClass bg-white/10 border border-white/20 mb-2 mt-2"
+                (click)="updateAbilityPointsMap(map)"
             >
                 <div class="font-semibold text-2xl pl-4 pr-4">{{ map }}:</div>
                 <div class="text-2xl font-bold pl-4 pr-4">{{ abilityPointsMap()?.[map] }}</div>
@@ -28,6 +29,8 @@ import { ChartModule } from 'primeng/chart';
 })
 export class AssignAbilityPointsComponent implements OnInit {
     abilityPointsMap = input<AbilityAssignMap>();
+    updatedAbilityPointsMap = output<AbilityAssignMap>();
+    selectedValueDice = input<number>(0);
 
     data: any;
     options: any;
@@ -64,5 +67,18 @@ export class AssignAbilityPointsComponent implements OnInit {
 
     objectKeys(obj: AbilityAssignMap | null | undefined): string[] {
         return Object.keys(obj || {});
+    }
+
+    updateAbilityPointsMap(ability: string) {
+        console.log(
+            `Updating ability points for ${ability} with value ${this.selectedValueDice()}`
+        );
+        if (this.selectedValueDice() > 0) {
+            const map = this.abilityPointsMap();
+            if (map) {
+                map[ability] = this.selectedValueDice();
+                this.updatedAbilityPointsMap.emit(map);
+            }
+        }
     }
 }

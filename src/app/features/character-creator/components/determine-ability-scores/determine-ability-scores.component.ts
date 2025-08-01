@@ -18,11 +18,15 @@ import { AssignAbilityPointsComponent } from './components/assign-ability-points
                 </p>
                 <p class="text-xl">1) Roll 4d6 and discard the lowest die</p>
                 <p class="text-xl">2) Repeat for each ability score for total of 6 scores</p>
-                <p class="text-xl">3) Assign scores to abilities as desired</p>
+                <p class="text-xl">
+                    3) Assign scores to abilities as desired by clicking on the dice and then on the
+                    ability
+                </p>
                 <div class="flex flex-row gap-2 items-center ">
                     <p-button class="pt-5 pb-3" (click)="rollPoints()">Roll points</p-button>
                     <p-button
                         class="pt-5 pb-3"
+                        severity="contrast"
                         icon="pi pi-unlock"
                         ariaLabel="Unlock"
                         [disabled]="!isLocked()"
@@ -33,12 +37,13 @@ import { AssignAbilityPointsComponent } from './components/assign-ability-points
             <app-ability-score-dices
                 [diceSets]="diceSets()"
                 class="mt-6"
-                (selectedRollEvent)="selectedRoll($event)"
+                (selectedRollEvent)="selectedRollEvent($event)"
                 [resetSignal]="resetSignal()"
             ></app-ability-score-dices>
             <app-assign-ability-points
                 class="mt-6"
                 [abilityPointsMap]="abilityPointsMap()"
+                [selectedValueDice]="selectedValueDice()"
             ></app-assign-ability-points>
         </p-card>
     </div>`,
@@ -66,6 +71,7 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
 
     isLocked = signal(false);
     resetSignal = signal(false);
+    selectedValueDice = signal<number>(0);
 
     ngAfterViewInit(): void {
         this.rollPoints();
@@ -74,14 +80,14 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
     rollPoints() {
         this.resetSignal.set(true);
         this.isLocked.set(false);
-        
+
         this.diceSets.update((set) => {
             return set.map((diceSet) => {
                 const newRolls = this.rollDice();
                 return { ...diceSet, rolls: newRolls };
             });
         });
-        
+
         setTimeout(() => this.resetSignal.set(false), 100);
     }
 
@@ -94,12 +100,15 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
         return rolls;
     }
 
-    selectedRoll(diceSetId: number) {
+    selectedRollEvent(diceSetId: number) {
         console.log(`Selected roll for dice set ID: ${diceSetId}`);
         if (diceSetId === 0) {
             this.isLocked.set(false);
         } else {
             this.isLocked.set(true);
+            this.selectedValueDice.set(
+                this.getRollTotal(this.diceSets().find((ds) => ds.id === diceSetId)?.rolls || [])
+            );
         }
     }
 
@@ -107,5 +116,10 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
         this.resetSignal.set(true);
         this.isLocked.set(false);
         setTimeout(() => this.resetSignal.set(false), 100);
+    }
+
+    getRollTotal(rolls: number[]) {
+        const sortedRolls = [...rolls].slice(0, 3);
+        return sortedRolls.reduce((acc, sortedRoll) => acc + sortedRoll);
     }
 }
