@@ -63,12 +63,12 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
     ] as DiceSet[]);
 
     abilityPointsMap = signal<{ [key: string]: number }>({
-        STRENGTH: 10,
-        DEXTERITY: 10,
-        CONSTITUTION: 10,
-        INTELLIGENCE: 10,
-        WISDOM: 10,
-        CHARISMA: 10,
+        STRENGTH: -1,
+        DEXTERITY: -1,
+        CONSTITUTION: -1,
+        INTELLIGENCE: -1,
+        WISDOM: -1,
+        CHARISMA: -1,
     });
 
     isLocked = signal(false);
@@ -126,6 +126,10 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
     }
 
     updatedAbilityPointsMap($event: AbilityAssignMap) {
+        console.log('Updating ability points map:', $event);
         this.abilityPointsMap.set($event);
+        this.isLocked.set(false);
+        this.selectedValueDice.set(0);
+        this.resetSignal.set(true);
     }
 }

@@ -17,11 +17,14 @@ import { ChartModule } from 'primeng/chart';
             <div
                 class="flex justify-between items-center p-ripple 
                 backdrop-blur-sm rounded-xl shadow-xl w-1/2 overflow-hidden h-15 
-                transform itemClass bg-white/10 border border-white/20 mb-2 mt-2"
+                transform itemClass bg-white/10 border border-white/20 mb-2 mt-2
+                hover:bg-white/15 hover:border-white/30 hover:shadow-2xl transition-colors duration-300 cursor-pointer"
                 (click)="updateAbilityPointsMap(map)"
+
+                
             >
                 <div class="font-semibold text-2xl pl-4 pr-4">{{ map }}:</div>
-                <div class="text-2xl font-bold pl-4 pr-4">{{ abilityPointsMap()?.[map] }}</div>
+                <div class="text-2xl font-bold pl-4 pr-4">{{ abilityPointsMap()?.[map] == -1 ? '-' : abilityPointsMap()?.[map] }}</div>
             </div>
             }} @else {
             <p class="text-gray-500">No ability points assigned yet.</p>
