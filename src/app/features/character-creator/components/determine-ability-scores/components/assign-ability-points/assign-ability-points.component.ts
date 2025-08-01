@@ -107,10 +107,11 @@ export class AssignAbilityPointsComponent {
             `Updating ability points for ${ability} with value ${this.selectedValueDice()}`
         );
         if (this.selectedValueDice() > 0) {
-            const map = this.abilityPointsMap();
-            if (map) {
-                map[ability] = this.selectedValueDice();
-                this.updatedAbilityPointsMap.emit(map);
+            const currentMap = this.abilityPointsMap();
+            if (currentMap) {
+                const updatedMap = { ...currentMap };
+                updatedMap[ability] = this.selectedValueDice();
+                this.updatedAbilityPointsMap.emit(updatedMap);
             }
         }
     }
