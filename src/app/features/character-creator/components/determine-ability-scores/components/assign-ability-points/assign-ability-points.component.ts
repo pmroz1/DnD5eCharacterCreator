@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, input, OnInit, output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    input,
+    output,
+    computed,
+} from '@angular/core';
 import { AbilityAssignMap } from '../../models/ability-assign.map';
 import { ChartModule } from 'primeng/chart';
 @Component({
@@ -22,21 +28,18 @@ import { ChartModule } from 'primeng/chart';
             }
         </div>
         <div class="card flex justify-center w-full ">
-            <p-chart type="radar" [data]="data" [options]="options" class="w-full md:w-[30rem]" />
+            <p-chart type="radar" [data]="data()" [options]="options()" class="w-full md:w-[30rem]" />
         </div>
     </div>`,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AssignAbilityPointsComponent implements OnInit {
+export class AssignAbilityPointsComponent {
     abilityPointsMap = input<AbilityAssignMap>();
     updatedAbilityPointsMap = output<AbilityAssignMap>();
     selectedValueDice = input<number>(0);
 
-    data: any;
-    options: any;
-
-    ngOnInit() {
-        this.data = {
+    data = computed(() => {
+        return {
             labels: this.objectKeys(this.abilityPointsMap()),
             datasets: [
                 {
@@ -44,26 +47,56 @@ export class AssignAbilityPointsComponent implements OnInit {
                     data: this.objectKeys(this.abilityPointsMap()).map(
                         (key) => this.abilityPointsMap()?.[key]
                     ),
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1,
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(59, 130, 246, 1)'
                 },
             ],
         };
+    });
 
-        this.options = {
+    options = computed(() => {
+        return {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     position: 'top',
+                    labels: {
+                        color: '#ffffff'
+                    }
                 },
                 title: {
-                    display: false,
-                    text: 'Ability Points Distribution',
+                    display: true,
+                    text: 'Ability Scores Distribution',
+                    color: '#ffffff'
                 },
             },
+            scales: {
+                r: {
+                    angleLines: {
+                        color: '#ffffff33'
+                    },
+                    grid: {
+                        color: '#ffffff33'
+                    },
+                    pointLabels: {
+                        color: '#ffffff'
+                    },
+                    ticks: {
+                        color: '#ffffff',
+                        backdropColor: 'transparent'
+                    },
+                    min: 0,
+                    max: 20
+                }
+            }
         };
-    }
+    });
 
     objectKeys(obj: AbilityAssignMap | null | undefined): string[] {
         return Object.keys(obj || {});

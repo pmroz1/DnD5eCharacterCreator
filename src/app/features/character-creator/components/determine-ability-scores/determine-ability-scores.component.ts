@@ -4,6 +4,7 @@ import { AbilityScoreDicesComponent } from './components/ability-score-dices/abi
 import { Button } from 'primeng/button';
 import { DiceSet } from './models/dice-set.model';
 import { AssignAbilityPointsComponent } from './components/assign-ability-points/assign-ability-points.component';
+import { AbilityAssignMap } from './models/ability-assign.map';
 
 @Component({
     selector: 'app-determine-ability-scores',
@@ -44,6 +45,7 @@ import { AssignAbilityPointsComponent } from './components/assign-ability-points
                 class="mt-6"
                 [abilityPointsMap]="abilityPointsMap()"
                 [selectedValueDice]="selectedValueDice()"
+                (updatedAbilityPointsMap)="updatedAbilityPointsMap($event)"
             ></app-assign-ability-points>
         </p-card>
     </div>`,
@@ -121,5 +123,9 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
     getRollTotal(rolls: number[]) {
         const sortedRolls = [...rolls].slice(0, 3);
         return sortedRolls.reduce((acc, sortedRoll) => acc + sortedRoll);
+    }
+
+    updatedAbilityPointsMap($event: AbilityAssignMap) {
+        this.abilityPointsMap.set($event);
     }
 }
