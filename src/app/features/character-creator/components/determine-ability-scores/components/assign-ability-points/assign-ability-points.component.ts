@@ -26,11 +26,10 @@ import { ChartModule } from 'primeng/chart';
     </div>`,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AssignAbilityPointsComponent implements OnInit{
+export class AssignAbilityPointsComponent implements OnInit {
     abilityPointsMap = input<AbilityAssignMap>();
 
-     data: any;
-
+    data: any;
     options: any;
 
     ngOnInit() {
@@ -39,25 +38,27 @@ export class AssignAbilityPointsComponent implements OnInit{
             datasets: [
                 {
                     label: 'Ability Points',
-                    data: this.objectKeys(this.abilityPointsMap()).map((key) => this.abilityPointsMap()?.[key]),
+                    data: this.objectKeys(this.abilityPointsMap()).map(
+                        (key) => this.abilityPointsMap()?.[key]
+                    ),
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }
-            ]
+                    borderWidth: 1,
+                },
+            ],
         };
 
         this.options = {
             responsive: true,
             plugins: {
                 legend: {
-                    position: 'top'
+                    position: 'top',
                 },
                 title: {
                     display: false,
-                    text: 'Ability Points Distribution'
-                }
-            }
+                    text: 'Ability Points Distribution',
+                },
+            },
         };
     }
 
