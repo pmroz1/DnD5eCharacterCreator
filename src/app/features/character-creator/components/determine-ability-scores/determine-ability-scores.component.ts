@@ -23,12 +23,9 @@ import { AssignAbilityPointsComponent } from './components/assign-ability-points
                     <p-button class="pt-5 pb-3" (click)="rollPoints()">Roll points</p-button>
                     <p-button
                         class="pt-5 pb-3"
-                        icon="{{ isLocked() === true ? 'pi pi-lock' : 'pi pi-unlock' }}"
-                        ariaLabel="{{ isLocked() === true ? 'Unlock' : 'Lock' }}"
-                        [class]="{
-                            'bg-dark-500 text-white': !isLocked(),
-                            'bg-gray-300 text-gray-800': isLocked()
-                        }"
+                        icon="pi pi-unlock"
+                        ariaLabel="Unlock"
+                        [disabled]="!isLocked()"
                         (click)="isLocked.set(!isLocked())"
                     ></p-button>
                 </div>
@@ -70,7 +67,6 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
     isLocked = signal(false);
 
     ngAfterViewInit(): void {
-        // throw new Error('Method not implemented.');
         this.rollPoints();
     }
 

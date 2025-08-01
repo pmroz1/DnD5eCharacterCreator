@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
 import { DiceSet } from '../../models/dice-set.model';
 
 @Component({
@@ -14,7 +14,7 @@ import { DiceSet } from '../../models/dice-set.model';
                     h-auto bg-white/10 border-2 border-white/20
                     bg-gradient-to-b from-gray-800/20 via-gray-700/20 to-gray-600/20 border-2 border-gray-500/30 shadow-lg shadow-gray-500/20 transition-colors duration-300
                     "
-                    class='{{ getCardClasses(diceSet.id) }}'
+                    class="{{ getCardClasses(diceSet.id) }}"
                     (click)="isLocked() ? $event.stopPropagation() : selectRoll(diceSet)"
                 >
                     <div class="text-xl font-semibold">Dice Set {{ diceSet.id }}</div>
@@ -46,6 +46,14 @@ export class AbilityScoreDicesComponent {
     selectedRollEvent = output<number>();
     selectedRoll = signal<number>(0);
     isLocked = signal<boolean>(false);
+    resetSignal = input<boolean>(false);
+
+    resetEffect = effect(() => {
+        if (this.resetSignal()) {
+            this.selectedRoll.set(0);
+            this.isLocked.set(false);
+        }
+    });
 
     getRollTotal(rolls: number[]) {
         const sortedRolls = [...rolls].slice(0, 3);
