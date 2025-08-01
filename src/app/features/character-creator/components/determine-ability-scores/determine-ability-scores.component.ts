@@ -19,14 +19,29 @@ import { AssignAbilityPointsComponent } from './components/assign-ability-points
                 <p class="text-xl">1) Roll 4d6 and discard the lowest die</p>
                 <p class="text-xl">2) Repeat for each ability score for total of 6 scores</p>
                 <p class="text-xl">3) Assign scores to abilities as desired</p>
-                <p-button class="pt-5 pb-3" (click)="rollPoints()">Roll points</p-button>
+                <div class="flex flex-row gap-2 items-center ">
+                    <p-button class="pt-5 pb-3" (click)="rollPoints()">Roll points</p-button>
+                    <p-button
+                        class="pt-5 pb-3"
+                        icon="{{ isLocked() === true ? 'pi pi-lock' : 'pi pi-unlock' }}"
+                        ariaLabel="{{ isLocked() === true ? 'Unlock' : 'Lock' }}"
+                        [class]="{
+                            'bg-dark-500 text-white': !isLocked(),
+                            'bg-gray-300 text-gray-800': isLocked()
+                        }"
+                        (click)="isLocked.set(!isLocked())"
+                    ></p-button>
+                </div>
             </div>
             <app-ability-score-dices
                 [diceSets]="diceSets()"
                 class="mt-6"
                 (selectedRollEvent)="selectedRoll($event)"
             ></app-ability-score-dices>
-            <app-assign-ability-points class="mt-6" [abilityPointsMap]="abilityPointsMap()"></app-assign-ability-points>
+            <app-assign-ability-points
+                class="mt-6"
+                [abilityPointsMap]="abilityPointsMap()"
+            ></app-assign-ability-points>
         </p-card>
     </div>`,
     styles: '',
@@ -50,6 +65,9 @@ export class DetermineAbilityScoresComponent {
         WISDOM: 10,
         CHARISMA: 10,
     });
+
+    // TODO: Implement locking mechanism to prevent further rolls
+    isLocked = signal(false);
 
     rollPoints() {
         this.diceSets.update((set) => {
