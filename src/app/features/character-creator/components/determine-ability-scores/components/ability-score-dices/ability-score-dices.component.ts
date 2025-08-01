@@ -15,7 +15,7 @@ import { DiceSet } from '../../models/dice-set.model';
                     bg-gradient-to-b from-gray-800/20 via-gray-700/20 to-gray-600/20 border-2 border-gray-500/30 shadow-lg shadow-gray-500/20 transition-colors duration-300
                     "
                     class="{{ getCardClasses(diceSet.id) }}"
-                    (click)="isLocked() ? $event.stopPropagation() : selectRoll(diceSet)"
+                    (click)="selectRoll(diceSet)"
                 >
                     <div class="text-xl font-semibold">Dice Set {{ diceSet.id }}</div>
                     <div class="flex space-x-2">
@@ -45,13 +45,13 @@ export class AbilityScoreDicesComponent {
     diceSets = input<DiceSet[]>();
     selectedRollEvent = output<number>();
     selectedRoll = signal<number>(0);
-    isLocked = signal<boolean>(false);
+    isLocked = input<boolean>(false);
     resetSignal = input<boolean>(false);
 
     resetEffect = effect(() => {
         if (this.resetSignal()) {
             this.selectedRoll.set(0);
-            this.isLocked.set(false);
+            this.selectedRollEvent.emit(0);
         }
     });
 
@@ -61,10 +61,15 @@ export class AbilityScoreDicesComponent {
     }
 
     selectRoll(diceSet: DiceSet) {
-        const selectedSet = diceSet.id;
-        this.selectedRoll.set(selectedSet);
-        this.isLocked.set(true);
-        this.selectedRollEvent.emit(selectedSet);
+        if (this.selectedRoll() === diceSet.id) {
+            // Deselect if clicking the same card
+            this.selectedRoll.set(0);
+            this.selectedRollEvent.emit(0);
+        } else {
+            // Select new card
+            this.selectedRoll.set(diceSet.id);
+            this.selectedRollEvent.emit(diceSet.id);
+        }
     }
 
     getCardClasses(number: number) {
@@ -76,6 +81,10 @@ export class AbilityScoreDicesComponent {
             return 'bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 border-2 border-blue-400/60 shadow-2xl shadow-blue-400/20 drop-shadow-lg transition-colors duration-300';
         }
 
-        return 'text-zinc-500 opacity-50 pointer-events-none bg-white/10 border border-white/20 hover:bg-white/15 hover:border-white/30 hover:shadow-2xl hover:scale-104 transition-all duration-300';
+        if (this.selectedRoll() !== 0 && this.selectedRoll() !== number) {
+            return 'opacity-50 pointer-events-none transition-all duration-300';
+        }
+
+        return '';
     }
 }

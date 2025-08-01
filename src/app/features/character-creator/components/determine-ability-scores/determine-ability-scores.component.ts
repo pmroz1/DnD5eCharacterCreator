@@ -26,7 +26,7 @@ import { AssignAbilityPointsComponent } from './components/assign-ability-points
                         icon="pi pi-unlock"
                         ariaLabel="Unlock"
                         [disabled]="!isLocked()"
-                        (click)="isLocked.set(!isLocked())"
+                        (click)="unlockSelection()"
                     ></p-button>
                 </div>
             </div>
@@ -34,6 +34,8 @@ import { AssignAbilityPointsComponent } from './components/assign-ability-points
                 [diceSets]="diceSets()"
                 class="mt-6"
                 (selectedRollEvent)="selectedRoll($event)"
+                [isLocked]="isLocked()"
+                [resetSignal]="resetSignal()"
             ></app-ability-score-dices>
             <app-assign-ability-points
                 class="mt-6"
@@ -63,20 +65,25 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
         CHARISMA: 10,
     });
 
-    // TODO: Implement locking mechanism to prevent further rolls
     isLocked = signal(false);
+    resetSignal = signal(false);
 
     ngAfterViewInit(): void {
         this.rollPoints();
     }
 
     rollPoints() {
+        this.resetSignal.set(true);
+        this.isLocked.set(false);
+        
         this.diceSets.update((set) => {
             return set.map((diceSet) => {
                 const newRolls = this.rollDice();
                 return { ...diceSet, rolls: newRolls };
             });
         });
+        
+        setTimeout(() => this.resetSignal.set(false), 100);
     }
 
     rollDice() {
@@ -90,5 +97,16 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
 
     selectedRoll(diceSetId: number) {
         console.log(`Selected roll for dice set ID: ${diceSetId}`);
+        if (diceSetId === 0) {
+            this.isLocked.set(false);
+        } else {
+            this.isLocked.set(true);
+        }
+    }
+
+    unlockSelection() {
+        this.resetSignal.set(true);
+        this.isLocked.set(false);
+        setTimeout(() => this.resetSignal.set(false), 100);
     }
 }
