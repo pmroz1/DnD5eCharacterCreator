@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { Card } from 'primeng/card';
 import { AbilityScoreDicesComponent } from './components/ability-score-dices/ability-score-dices.component';
 import { Button } from 'primeng/button';
@@ -47,7 +47,7 @@ import { AssignAbilityPointsComponent } from './components/assign-ability-points
     styles: '',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DetermineAbilityScoresComponent {
+export class DetermineAbilityScoresComponent implements AfterViewInit {
     diceSets = signal([
         { id: 1, rolls: [-1, -1, -1, -1] },
         { id: 2, rolls: [-1, -1, -1, -1] },
@@ -68,6 +68,11 @@ export class DetermineAbilityScoresComponent {
 
     // TODO: Implement locking mechanism to prevent further rolls
     isLocked = signal(false);
+
+    ngAfterViewInit(): void {
+        // throw new Error('Method not implemented.');
+        this.rollPoints();
+    }
 
     rollPoints() {
         this.diceSets.update((set) => {
