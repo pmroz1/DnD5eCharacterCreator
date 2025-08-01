@@ -34,7 +34,6 @@ import { AssignAbilityPointsComponent } from './components/assign-ability-points
                 [diceSets]="diceSets()"
                 class="mt-6"
                 (selectedRollEvent)="selectedRoll($event)"
-                [isLocked]="isLocked()"
                 [resetSignal]="resetSignal()"
             ></app-ability-score-dices>
             <app-assign-ability-points

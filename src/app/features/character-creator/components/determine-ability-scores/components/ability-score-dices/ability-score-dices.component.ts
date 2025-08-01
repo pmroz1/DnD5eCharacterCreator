@@ -45,7 +45,6 @@ export class AbilityScoreDicesComponent {
     diceSets = input<DiceSet[]>();
     selectedRollEvent = output<number>();
     selectedRoll = signal<number>(0);
-    isLocked = input<boolean>(false);
     resetSignal = input<boolean>(false);
 
     resetEffect = effect(() => {
@@ -62,11 +61,9 @@ export class AbilityScoreDicesComponent {
 
     selectRoll(diceSet: DiceSet) {
         if (this.selectedRoll() === diceSet.id) {
-            // Deselect if clicking the same card
             this.selectedRoll.set(0);
             this.selectedRollEvent.emit(0);
         } else {
-            // Select new card
             this.selectedRoll.set(diceSet.id);
             this.selectedRollEvent.emit(diceSet.id);
         }
