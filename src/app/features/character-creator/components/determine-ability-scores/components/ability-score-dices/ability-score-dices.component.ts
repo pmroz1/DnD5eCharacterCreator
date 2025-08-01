@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
 import { DiceSet } from '../../models/dice-set.model';
 
 @Component({
@@ -11,12 +11,10 @@ import { DiceSet } from '../../models/dice-set.model';
                     class="flex flex-col justify-center items-center 
                     p-ripple group cursor-pointer backdrop-blur-sm rounded-xl 
                     shadow-xl w-full flex flex-col overflow-hidden transform itemClass 
-                    h-auto bg-white/10 border-2 border-white/20"
-                    class="{{
-                        diceSet.id === selectedRoll()
-                            ? 'bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 border-2 border-blue-400/60 shadow-2xl shadow-blue-400/20 drop-shadow-lg transition-colors duration-300'
-                            : ''
-                    }}"
+                    h-auto bg-white/10 border-2 border-white/20
+                    bg-gradient-to-b from-gray-800/20 via-gray-700/20 to-gray-600/20 border-2 border-gray-500/30 shadow-lg shadow-gray-500/20 transition-colors duration-300
+                    "
+                    class="{{ getCardClasses(diceSet.id) }}"
                     (click)="selectRoll(diceSet)"
                 >
                     <div class="text-xl font-semibold">Dice Set {{ diceSet.id }}</div>
@@ -28,7 +26,13 @@ import { DiceSet } from '../../models/dice-set.model';
                         }
                     </div>
                     <div class="flex text-3xl font-bold text-white pt-2 mb-2">
-                        <p>{{ getRollTotal(diceSet.rolls) === -3 ? 'No Valid Rolls' : getRollTotal(diceSet.rolls) }}</p>
+                        <p>
+                            {{
+                                getRollTotal(diceSet.rolls) === -3
+                                    ? 'No Valid Rolls'
+                                    : getRollTotal(diceSet.rolls)
+                            }}
+                        </p>
                     </div>
                 </div>
                 }
@@ -41,6 +45,14 @@ export class AbilityScoreDicesComponent {
     diceSets = input<DiceSet[]>();
     selectedRollEvent = output<number>();
     selectedRoll = signal<number>(0);
+    resetSignal = input<boolean>(false);
+
+    resetEffect = effect(() => {
+        if (this.resetSignal()) {
+            this.selectedRoll.set(0);
+            this.selectedRollEvent.emit(0);
+        }
+    });
 
     getRollTotal(rolls: number[]) {
         const sortedRolls = [...rolls].slice(0, 3);
@@ -48,8 +60,28 @@ export class AbilityScoreDicesComponent {
     }
 
     selectRoll(diceSet: DiceSet) {
-        const selectedSet = diceSet.id;
-        this.selectedRoll.set(selectedSet);
-        this.selectedRollEvent.emit(selectedSet);
+        if (this.selectedRoll() === diceSet.id) {
+            this.selectedRoll.set(0);
+            this.selectedRollEvent.emit(0);
+        } else {
+            this.selectedRoll.set(diceSet.id);
+            this.selectedRollEvent.emit(diceSet.id);
+        }
+    }
+
+    getCardClasses(number: number) {
+        if (this.selectedRoll() === 0) {
+            return '';
+        }
+
+        if (this.selectedRoll() === number) {
+            return 'bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 border-2 border-blue-400/60 shadow-2xl shadow-blue-400/20 drop-shadow-lg transition-colors duration-300';
+        }
+
+        if (this.selectedRoll() !== 0 && this.selectedRoll() !== number) {
+            return 'opacity-50 pointer-events-none transition-all duration-300';
+        }
+
+        return '';
     }
 }
