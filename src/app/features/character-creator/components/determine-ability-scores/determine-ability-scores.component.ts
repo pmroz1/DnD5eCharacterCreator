@@ -40,6 +40,7 @@ import { AbilityAssignMap } from './models/ability-assign.map';
                 class="mt-6"
                 (selectedRollEvent)="selectedRollEvent($event)"
                 [resetSignal]="resetSignal()"
+                [usedDiceIds]="usedDiceIds()"
             ></app-ability-score-dices>
             <app-assign-ability-points
                 class="mt-6"
@@ -74,6 +75,8 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
     isLocked = signal(false);
     resetSignal = signal(false);
     selectedValueDice = signal<number>(0);
+    usedDiceIds = signal<Set<number>>(new Set());
+    selectedDiceId = signal<number>(0);
 
     ngAfterViewInit(): void {
         this.rollPoints();
@@ -82,6 +85,9 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
     rollPoints() {
         this.resetSignal.set(true);
         this.isLocked.set(false);
+        this.selectedValueDice.set(0);
+        this.selectedDiceId.set(0);
+        this.usedDiceIds.set(new Set());
 
         this.diceSets.update((set) => {
             return set.map((diceSet) => {
@@ -104,10 +110,19 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
 
     selectedRollEvent(diceSetId: number) {
         console.log(`Selected roll for dice set ID: ${diceSetId}`);
+        
+        if (diceSetId > 0 && this.usedDiceIds().has(diceSetId)) {
+            console.log(`Dice ${diceSetId} is already used`);
+            return;
+        }
+
         if (diceSetId === 0) {
             this.isLocked.set(false);
+            this.selectedValueDice.set(0);
+            this.selectedDiceId.set(0);
         } else {
             this.isLocked.set(true);
+            this.selectedDiceId.set(diceSetId);
             this.selectedValueDice.set(
                 this.getRollTotal(this.diceSets().find((ds) => ds.id === diceSetId)?.rolls || [])
             );
@@ -115,8 +130,10 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
     }
 
     unlockSelection() {
-        this.resetSignal.set(true);
         this.isLocked.set(false);
+        this.selectedValueDice.set(0);
+        this.selectedDiceId.set(0);
+        this.resetSignal.set(true);
         setTimeout(() => this.resetSignal.set(false), 100);
     }
 
@@ -127,9 +144,22 @@ export class DetermineAbilityScoresComponent implements AfterViewInit {
 
     updatedAbilityPointsMap($event: AbilityAssignMap) {
         console.log('Updating ability points map:', $event);
+        
+        const currentDiceId = this.selectedDiceId();
+        if (currentDiceId > 0) {
+            const newUsedIds = new Set(this.usedDiceIds());
+            newUsedIds.add(currentDiceId);
+            this.usedDiceIds.set(newUsedIds);
+            console.log('Used dice IDs:', Array.from(newUsedIds));
+        }
+        
         this.abilityPointsMap.set($event);
+        
         this.isLocked.set(false);
         this.selectedValueDice.set(0);
+        this.selectedDiceId.set(0);
+        
         this.resetSignal.set(true);
+        setTimeout(() => this.resetSignal.set(false), 50);
     }
 }
