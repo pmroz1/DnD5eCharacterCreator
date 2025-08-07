@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
-import { DiceSet } from '../../models/dice-set.model';
+import { DiceSet } from '@shared/models/dice-set.model';
 
 @Component({
     selector: 'app-ability-score-dices',

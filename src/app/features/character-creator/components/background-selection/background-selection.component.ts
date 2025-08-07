@@ -3,12 +3,18 @@ import {
     BackgroundSteps,
     CreationSteps,
     CreationStepsDescriptions,
-} from '@features/character-creator/dictionaries/creation-steps.dictionary';
+} from '@shared/dictionaries/creation-steps.dictionary';
 import { CharacterCreatorFacade } from '@features/character-creator/services/character-creator-facade.service';
 import { CarouselComponent } from '@shared/components/carousel/carousel.component';
 import { ImageAccordionComponent } from '@shared/components/image-accordion/image-accordion.component';
 import { ImageAccordionItem } from '@shared/components/image-accordion/models/image-accordion.model';
 import { CommonModule } from '@angular/common';
+import {
+    BACKGROUND_STEPS_LIST,
+    COMMON_LANGUAGES,
+    PERSONALITY_TRAITS,
+    CHARACTER_IDEALS,
+} from '@shared/data/character-creation.data';
 
 @Component({
     selector: 'app-background-selection',
@@ -37,74 +43,10 @@ export class BackgroundSelectionComponent {
         return bg?.chips || [];
     });
 
-    backgroundStepsList = [
-        { id: 0, name: 'Race', icon: 'pi-star-fill' },
-        { id: 1, name: 'Background', icon: 'pi-briefcase' },
-        { id: 2, name: 'Languages', icon: 'pi-comments' },
-        { id: 3, name: 'History', icon: 'pi-book' },
-    ];
-
-    commonLanguages = [
-        { name: 'Common', description: 'The most widely spoken language' },
-        { name: 'Elvish', description: 'Language of the elves' },
-        { name: 'Dwarvish', description: 'Language of the dwarves' },
-        { name: 'Halfling', description: 'Language of the halflings' },
-        { name: 'Draconic', description: 'Ancient language of dragons' },
-        { name: 'Orcish', description: 'Language of orcs and related creatures' },
-        { name: 'Giant', description: 'Language of giants' },
-        { name: 'Gnomish', description: 'Language of the gnomes' },
-        { name: 'Goblin', description: 'Language of goblins and related creatures' },
-    ];
-
-    personalityTraits = [
-        { id: 1, description: 'I judge people by their actions, not their words.' },
-        { id: 2, description: "If someone is in trouble, I'm always ready to lend help." },
-        {
-            id: 3,
-            description:
-                'When I set my mind to something, I follow through no matter what gets in my way.',
-        },
-        {
-            id: 4,
-            description:
-                'I have a strong sense of fair play and always try to find the most equitable solution.',
-        },
-        {
-            id: 5,
-            description:
-                "I'm confident in my own abilities and do what I can to instill confidence in others.",
-        },
-        { id: 6, description: 'Thinking is for other people. I prefer action.' },
-    ];
-
-    characterIdeals = [
-        {
-            id: 1,
-            name: 'Respect',
-            description: 'People deserve to be treated with dignity and respect.',
-        },
-        {
-            id: 2,
-            name: 'Fairness',
-            description: 'No one should get preferential treatment before the law.',
-        },
-        {
-            id: 3,
-            name: 'Freedom',
-            description: 'Tyrants must not be allowed to oppress the people.',
-        },
-        { id: 4, name: 'Might', description: 'If I become strong, I can take what I want.' },
-        {
-            id: 5,
-            name: 'Sincerity',
-            description: "There's no good in pretending to be something I'm not.",
-        },
-        {
-            id: 6,
-            name: 'Destiny',
-            description: 'Nothing and no one can steer me away from my higher calling.',
-        },
-    ];
+    backgroundStepsList = BACKGROUND_STEPS_LIST;
+    commonLanguages = COMMON_LANGUAGES;
+    personalityTraits = PERSONALITY_TRAITS;
+    characterIdeals = CHARACTER_IDEALS;
 
     setActiveStep(step: number): void {
         if (step >= 0 && step < this.backgroundStepsList.length) {

@@ -3,7 +3,7 @@ import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
 import { ClassSelectionComponent } from '../../components/class-selection/class-selection.component';
 import { BackgroundSelectionComponent } from '@features/character-creator/components/background-selection/background-selection.component';
-import { CreationSteps } from '@features/character-creator/dictionaries/creation-steps.dictionary';
+import { CreationSteps } from '@shared/dictionaries/creation-steps.dictionary';
 import { DetermineAbilityScoresComponent } from '@features/character-creator/components/determine-ability-scores/determine-ability-scores.component';
 import { DetermineAligmentComponent } from '@features/character-creator/components/determine-aligment/determine-aligment.component';
 import { CommonModule } from '@angular/common';

@@ -3,7 +3,7 @@ import {
     CreationStepsDescriptions,
     CreationSteps,
     LinkPreNote,
-} from '@features/character-creator/dictionaries/creation-steps.dictionary';
+} from '@shared/dictionaries/creation-steps.dictionary';
 import { TipsLookup } from '@shared/dictionaries/tips-lookup.dictionary';
 import { CarouselComponent } from '@shared/components/carousel/carousel.component';
 import { CharacterCreatorFacade } from '@features/character-creator/services/character-creator-facade.service';
@@ -39,6 +39,5 @@ export class ClassSelectionComponent {
 
     proceedToNextStep(): void {
         console.log('Proceeding to next step with class:', this.selectedClass());
-        // Here you would typically navigate to the next step or emit an event
     }
 }

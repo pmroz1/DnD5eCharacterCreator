@@ -5,7 +5,7 @@ import {
     output,
     computed,
 } from '@angular/core';
-import { AbilityAssignMap } from '../../models/ability-assign.map';
+import { AbilityAssignMap } from '@shared/models/ability-assign-map.model';
 import { ChartModule } from 'primeng/chart';
 
 @Component({

@@ -1,8 +1,8 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, computed } from '@angular/core';
 import { AbilityScoreDicesComponent } from './components/ability-score-dices/ability-score-dices.component';
-import { DiceSet } from './models/dice-set.model';
+import { DiceSet } from '@shared/models/dice-set.model';
 import { AssignAbilityPointsComponent } from './components/assign-ability-points/assign-ability-points.component';
-import { AbilityAssignMap } from './models/ability-assign.map';
+import { AbilityAssignMap } from '@shared/models/ability-assign-map.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
