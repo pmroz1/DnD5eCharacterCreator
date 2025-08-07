@@ -7,11 +7,12 @@ import {
 import { CharacterCreatorFacade } from '@features/character-creator/services/character-creator-facade.service';
 import { CarouselComponent } from '@shared/components/carousel/carousel.component';
 import { ImageAccordionComponent } from '@shared/components/image-accordion/image-accordion.component';
+import { ImageAccordionItem } from '@shared/components/image-accordion/models/image-accordion.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-background-selection',
-    imports: [CarouselComponent, ImageAccordionComponent, CommonModule],
+    imports: [CarouselComponent, CommonModule],
     templateUrl: './background-selection.component.html',
     styleUrls: ['./background-selection.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,6 +30,12 @@ export class BackgroundSelectionComponent {
     selectedLanguages = signal<string[]>([]);
     selectedTrait = signal<number | null>(null);
     selectedIdeal = signal<number | null>(null);
+    selectedBackground = signal<ImageAccordionItem | null>(null);
+
+    selectedBackgroundChips = computed(() => {
+        const bg = this.selectedBackground();
+        return bg?.chips || [];
+    });
 
     backgroundStepsList = [
         { id: 0, name: 'Race', icon: 'pi-star-fill' },
@@ -167,5 +174,10 @@ export class BackgroundSelectionComponent {
     onRaceConfirmed(race: any): void {
         console.log('Race confirmed:', race);
         this.nextStep();
+    }
+
+    selectBackground(background: ImageAccordionItem): void {
+        this.selectedBackground.set(background);
+        console.log('Background selected:', background);
     }
 }

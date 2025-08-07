@@ -107,7 +107,188 @@
                         and your place in the world.
                     </p>
                 </div>
-                <app-image-accordion [items]="backgroundAccordionItems"></app-image-accordion>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @for (background of backgroundAccordionItems; track background.id) {
+                    <div
+                        class="group backdrop-blur-md bg-white/10 border border-white/20 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:bg-white/20 hover:border-purple-400/50 hover:transform hover:scale-105"
+                        [class]="
+                            selectedBackground()?.id === background.id
+                                ? 'bg-purple-500/30 border-purple-400 ring-2 ring-purple-400/50'
+                                : ''
+                        "
+                        (click)="selectBackground(background)"
+                    >
+                        <div class="relative h-48 overflow-hidden">
+                            @if (background.imageUrl) {
+                            <img
+                                [src]="background.imageUrl"
+                                [alt]="background.name"
+                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                            />
+                            } @else {
+                            <div
+                                class="w-full h-full bg-gradient-to-br from-purple-500/30 to-indigo-500/30 flex items-center justify-center"
+                            >
+                                <i class="pi pi-briefcase text-white/60 text-4xl"></i>
+                            </div>
+                            } @if (selectedBackground()?.id === background.id) {
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-purple-600/80 to-transparent flex items-end justify-center pb-4"
+                            >
+                                <div class="bg-white/20 backdrop-blur-sm rounded-full p-2">
+                                    <i class="pi pi-check text-white text-xl"></i>
+                                </div>
+                            </div>
+                            }
+
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            ></div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3
+                                    class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors duration-300"
+                                >
+                                    {{ background.name }}
+                                </h3>
+                                @if (selectedBackground()?.id === background.id) {
+                                <div
+                                    class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center"
+                                >
+                                    <i class="pi pi-check text-white text-xs"></i>
+                                </div>
+                                }
+                            </div>
+
+                            <p class="text-white/70 text-sm line-clamp-3 mb-4">
+                                {{ background.description }}
+                            </p>
+
+                            @if (background.chips && background.chips.length > 0) {
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                @for (chip of background.chips.slice(0, 3); track $index) {
+                                <span
+                                    class="px-2 py-1 bg-purple-500/30 text-purple-200 text-xs rounded-full border border-purple-400/30"
+                                >
+                                    {{ chip.value }}
+                                </span>
+                                } @if (background.chips.length > 3) {
+                                <span
+                                    class="px-2 py-1 bg-white/10 text-white/60 text-xs rounded-full border border-white/20"
+                                >
+                                    +{{ background.chips.length - 3 }} more
+                                </span>
+                                }
+                            </div>
+                            }
+
+                            <button
+                                class="w-full py-2 px-4 rounded-lg font-medium transition-all duration-300"
+                                [class]="
+                                    selectedBackground()?.id === background.id
+                                        ? 'bg-purple-500 hover:bg-purple-400 text-white'
+                                        : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
+                                "
+                                (click)="selectBackground(background); $event.stopPropagation()"
+                            >
+                                @if (selectedBackground()?.id === background.id) {
+                                <i class="pi pi-check mr-2"></i>Selected } @else { Select Background
+                                }
+                            </button>
+                        </div>
+                    </div>
+                    }
+                </div>
+
+                @if (selectedBackground()) {
+                <div
+                    class="mt-8 backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-8 animate-fade-in"
+                >
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="relative">
+                            @if (selectedBackground()?.imageUrl) {
+                            <div class="relative h-64 rounded-xl overflow-hidden">
+                                <img
+                                    [src]="selectedBackground()?.imageUrl"
+                                    [alt]="selectedBackground()?.name"
+                                    class="w-full h-full object-cover"
+                                />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+                                ></div>
+                                <div class="absolute bottom-4 left-4 right-4">
+                                    <h2 class="text-3xl font-bold text-white mb-2">
+                                        {{ selectedBackground()?.name }}
+                                    </h2>
+                                    <div class="flex items-center gap-2 text-purple-300">
+                                        <i class="pi pi-star-fill"></i>
+                                        <span class="font-medium">Selected Background</span>
+                                    </div>
+                                </div>
+                            </div>
+                            } @else {
+                            <div
+                                class="h-64 bg-gradient-to-br from-purple-500/30 to-indigo-500/30 rounded-xl flex items-center justify-center"
+                            >
+                                <div class="text-center">
+                                    <i class="pi pi-briefcase text-white/60 text-6xl mb-4"></i>
+                                    <h2 class="text-3xl font-bold text-white">
+                                        {{ selectedBackground()?.name }}
+                                    </h2>
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div
+                                        class="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center"
+                                    >
+                                        <i class="pi pi-info-circle text-white text-sm"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-white">Description</h3>
+                                </div>
+                                <div
+                                    class="backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-6"
+                                >
+                                    <p class="text-white/90 leading-relaxed">
+                                        {{ selectedBackground()?.description }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            @if (selectedBackgroundChips().length > 0) {
+                            <div>
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div
+                                        class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center"
+                                    >
+                                        <i class="pi pi-cog text-white text-sm"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-white">Skills & Features</h3>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    @for (chip of selectedBackgroundChips(); track $index) {
+                                    <div
+                                        class="flex items-center gap-3 p-3 backdrop-blur-md bg-white/10 border border-white/20 rounded-lg"
+                                    >
+                                        <div
+                                            class="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
+                                        ></div>
+                                        <span class="text-white/90 text-sm">{{ chip.value }}</span>
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                }
                 <div class="flex justify-center gap-4 mt-8">
                     <button
                         (click)="previousStep()"
