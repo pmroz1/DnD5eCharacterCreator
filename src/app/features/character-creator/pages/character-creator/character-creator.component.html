@@ -1,149 +1,151 @@
-<p-stepper [value]="1" class="basis-[50rem]">
-    <p-step-list>
-        <p-step [value]="1">{{ CreationSteps.ClassSelection }}</p-step>
-        <p-step [value]="2">{{ CreationSteps.BackgroundSelection }}</p-step>
-        <p-step [value]="3">{{ CreationSteps.AbilityScores }}</p-step>
-        <p-step [value]="4">{{ CreationSteps.Alignment }}</p-step>
-        <p-step [value]="5">{{ CreationSteps.Details }}</p-step>
-        <p-step [value]="6">{{ CreationSteps.Overview }}</p-step>
-    </p-step-list>
-    <p-step-panels>
-        <p-step-panel [value]="1">
-            <ng-template #content let-activateCallback="activateCallback">
-                <div class="flex flex-col">
-                    <div>
-                        <app-class-selection></app-class-selection>
-                    </div>
-                </div>
-                <div class="flex pt-6 justify-end">
-                    <p-button
-                        label="Next"
-                        icon="pi pi-arrow-right"
-                        iconPos="right"
-                        (onClick)="activateCallback(2)"
-                    />
-                </div>
-            </ng-template>
-        </p-step-panel>
-        <p-step-panel [value]="2">
-            <ng-template #content let-activateCallback="activateCallback">
-                <div class="flex flex-col">
-                    <app-background-selection></app-background-selection>
-                </div>
-                <div class="flex pt-6 justify-between">
-                    <p-button
-                        label="Previous"
-                        icon="pi pi-arrow-left"
-                        iconPos="left"
-                        (onClick)="activateCallback(1)"
-                    />
-                    <p-button
-                        label="Next"
-                        icon="pi pi-arrow-right"
-                        iconPos="right"
-                        (onClick)="activateCallback(3)"
-                    />
-                </div>
-            </ng-template>
-        </p-step-panel>
-        <p-step-panel [value]="3">
-            <ng-template #content let-activateCallback="activateCallback">
-                <div class="flex flex-col">
-                    <app-determine-ability-scores></app-determine-ability-scores>
-                </div>
-                <div class="flex pt-6 justify-between">
-                    <p-button
-                        label="Previous"
-                        icon="pi pi-arrow-left"
-                        iconPos="left"
-                        (onClick)="activateCallback(2)"
-                    />
-                    <p-button
-                        label="Next"
-                        icon="pi pi-arrow-right"
-                        iconPos="right"
-                        (onClick)="activateCallback(4)"
-                    />
-                </div>
-            </ng-template>
-        </p-step-panel>
-        <p-step-panel [value]="4">
-            <ng-template #content let-activateCallback="activateCallback">
-                <div class="flex flex-col h-48">
-                    <div
-                        class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
-                    >
-                        {{ CreationSteps.AbilityScores }}
-                    </div>
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/30 to-blue-900/30">
+    <!-- Page Header -->
+    <div class="pt-20 pb-8">
+        <div class="container mx-auto max-w-7xl px-6">
+            <div class="text-center mb-8">
+                <h1
+                    class="text-5xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent mb-4"
+                >
+                    🎲 Character Creator 🎲
+                </h1>
+                <p class="text-slate-300 text-lg max-w-2xl mx-auto">
+                    Create your perfect D&D 5e character with our guided step-by-step builder
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto max-w-7xl px-6 pb-8">
+        <div class="mb-8">
+            <div
+                class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 shadow-2xl"
+            >
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-white">Creation Progress</h2>
+                    <div class="text-white/70">Step {{ currentStep() }} of {{ steps.length }}</div>
                 </div>
 
-                <div class="flex pt-6 justify-between">
-                    <p-button
-                        label="Previous"
-                        icon="pi pi-arrow-left"
-                        iconPos="left"
-                        (onClick)="activateCallback(3)"
-                    />
-                    <p-button
-                        label="Next"
-                        icon="pi pi-arrow-right"
-                        iconPos="right"
-                        (onClick)="activateCallback(5)"
-                    />
-                </div>
-            </ng-template>
-        </p-step-panel>
-        <p-step-panel [value]="5">
-            <ng-template #content let-activateCallback="activateCallback">
-                <div class="flex flex-col h-48">
+                <div class="w-full bg-white/10 rounded-full h-3 mb-6">
                     <div
-                        class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
-                    >
-                        {{ CreationSteps.Alignment }}
-                    </div>
+                        class="h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full transition-all duration-500 ease-out"
+                        [style.width.%]="(currentStep() / steps.length) * 100"
+                    ></div>
                 </div>
 
-                <div class="flex pt-6 justify-between">
-                    <p-button
-                        label="Previous"
-                        icon="pi pi-arrow-left"
-                        iconPos="left"
-                        (onClick)="activateCallback(4)"
-                    />
-                    <p-button
-                        label="Next"
-                        icon="pi pi-arrow-right"
-                        iconPos="right"
-                        (onClick)="activateCallback(6)"
-                    />
-                </div>
-            </ng-template>
-        </p-step-panel>
-        <p-step-panel [value]="6">
-            <ng-template #content let-activateCallback="activateCallback">
-                <div class="flex flex-col h-48">
+                <div class="flex justify-between items-center">
+                    @for (step of steps; track step.id; let i = $index) {
                     <div
-                        class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                        class="flex flex-col items-center cursor-pointer group"
+                        (click)="goToStep(i + 1)"
                     >
-                        {{ CreationSteps.Details }}
+                        <div
+                            class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 mb-2"
+                            [class]="getStepClasses(i + 1)"
+                        >
+                            @if (i + 1 < currentStep()) {
+                            <i class="pi pi-check text-white"></i>
+                            } @else {
+                            {{ i + 1 }}
+                            }
+                        </div>
+                        <div class="text-center">
+                            <div
+                                class="text-sm font-medium transition-colors duration-300"
+                                [class]="i + 1 === currentStep() ? 'text-white' : 'text-white/60'"
+                            >
+                                {{ step.label }}
+                            </div>
+                            <div class="text-xs text-white/40">{{ step.description }}</div>
+                        </div>
                     </div>
+                    @if (i < steps.length - 1) {
+                    <div
+                        class="flex-1 h-1 mx-4 rounded-full transition-all duration-300"
+                        [class]="
+                            i + 1 < currentStep()
+                                ? 'bg-gradient-to-r from-green-400 to-emerald-500'
+                                : 'bg-white/20'
+                        "
+                    ></div>
+                    } }
                 </div>
+            </div>
+        </div>
 
-                <div class="flex pt-6 justify-between">
-                    <p-button
-                        label="Previous"
-                        icon="pi pi-arrow-left"
-                        iconPos="left"
-                        (onClick)="activateCallback(5)"
-                    />
-                    <p-button
-                        label="Finish"
-                        icon="pi pi-check"
-                        iconPos="right"
-                        (onClick)="activateCallback(1)"
-                    />
+        <div class="relative">
+            @switch (currentStep()) { @case (1) {
+            <div class="animate-fade-in">
+                <app-class-selection></app-class-selection>
+            </div>
+            } @case (2) {
+            <div class="animate-fade-in">
+                <app-background-selection></app-background-selection>
+            </div>
+            } @case (3) {
+            <div class="animate-fade-in">
+                <app-determine-ability-scores></app-determine-ability-scores>
+            </div>
+            } @case (4) {
+            <div class="animate-fade-in">
+                <app-determine-aligment></app-determine-aligment>
+            </div>
+            } @case (5) {
+            <div
+                class="animate-fade-in backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-8 text-center"
+            >
+                <div
+                    class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                    <i class="pi pi-user text-white text-2xl"></i>
                 </div>
-            </ng-template>
-        </p-step-panel>
-    </p-step-panels>
-</p-stepper>
+                <h2 class="text-3xl font-bold text-white mb-4">Character Details</h2>
+                <p class="text-white/70 mb-6">Add finishing touches to your character</p>
+                <div class="text-white/50">Coming Soon...</div>
+            </div>
+            } @case (6) {
+            <div
+                class="animate-fade-in backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-8 text-center"
+            >
+                <div
+                    class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                    <i class="pi pi-eye text-white text-2xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-4">Character Overview</h2>
+                <p class="text-white/70 mb-6">Review your completed character</p>
+                <div class="text-white/50">Coming Soon...</div>
+            </div>
+            } }
+        </div>
+
+        <div class="mt-8">
+            <div
+                class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 shadow-xl"
+            >
+                <div class="flex justify-between items-center">
+                    <button
+                        [disabled]="currentStep() === 1"
+                        (click)="previousStep()"
+                        class="px-6 py-3 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-500 hover:to-gray-600 disabled:from-gray-700 disabled:to-gray-800 disabled:cursor-not-allowed rounded-lg font-bold text-white shadow-lg transition-all duration-300 transform hover:-translate-y-1 disabled:hover:translate-y-0 disabled:opacity-50"
+                    >
+                        <i class="pi pi-arrow-left mr-2"></i>
+                        Previous
+                    </button>
+
+                    <div class="text-center">
+                        <div class="text-white/70 text-sm">{{ getCurrentStepDescription() }}</div>
+                    </div>
+
+                    <button
+                        [disabled]="currentStep() === steps.length"
+                        (click)="nextStep()"
+                        class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 disabled:from-gray-700 disabled:to-gray-800 disabled:cursor-not-allowed rounded-lg font-bold text-white shadow-lg transition-all duration-300 transform hover:-translate-y-1 disabled:hover:translate-y-0 disabled:opacity-50"
+                    >
+                        @if (currentStep() === steps.length) { Complete } @else { Next }
+                        <i class="pi pi-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

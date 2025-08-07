@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
-import { DiceSet } from '../../models/dice-set.model';
+import { DiceSet } from '@shared/models/dice-set.model';
 
 @Component({
     selector: 'app-ability-score-dices',
@@ -46,6 +46,7 @@ export class AbilityScoreDicesComponent {
     selectedRollEvent = output<number>();
     selectedRoll = signal<number>(0);
     resetSignal = input<boolean>(false);
+    usedDiceIds = input<Set<number>>(new Set());
 
     resetEffect = effect(() => {
         if (this.resetSignal()) {
@@ -60,6 +61,12 @@ export class AbilityScoreDicesComponent {
     }
 
     selectRoll(diceSet: DiceSet) {
+        // Don't allow selection of used dice
+        if (this.usedDiceIds().has(diceSet.id)) {
+            console.log(`Dice ${diceSet.id} is already used`);
+            return;
+        }
+
         if (this.selectedRoll() === diceSet.id) {
             this.selectedRoll.set(0);
             this.selectedRollEvent.emit(0);
@@ -70,6 +77,11 @@ export class AbilityScoreDicesComponent {
     }
 
     getCardClasses(number: number) {
+        // Check if this dice is used
+        if (this.usedDiceIds().has(number)) {
+            return 'opacity-30 pointer-events-none bg-gray-500/20 border-gray-400/30 transition-all duration-300';
+        }
+
         if (this.selectedRoll() === 0) {
             return '';
         }

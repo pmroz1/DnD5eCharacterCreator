@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { StepperModule } from 'primeng/stepper';
-import { CreationSteps } from '../../../character-creator/dictionaries/creation-steps.dictionary';
+import { CreationSteps } from '@shared/dictionaries/creation-steps.dictionary';
 
 @Component({
   selector: 'app-character-viewer',

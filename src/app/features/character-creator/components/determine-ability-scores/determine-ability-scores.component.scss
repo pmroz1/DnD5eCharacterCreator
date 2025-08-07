@@ -1,0 +1,46 @@
+:host {
+    display: block;
+    min-height: 100vh;
+}
+
+.backdrop-blur-md {
+    backdrop-filter: blur(12px);
+}
+
+.bg-gradient-to-br {
+    background-image: linear-gradient(135deg, var(--tw-gradient-stops));
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes ping {
+    75%,
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+button:disabled {
+    opacity: 0.6;
+}
+
+.shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
